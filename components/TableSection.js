@@ -12,7 +12,7 @@ const TableSection = () => {
                 <div>
                     <div className="flex justify-between mb-6">
 
-                        <div className="flex justify-center items-center flex-1 lg:mr-32">
+                        <div className="flex justify-start items-center flex-1 ">
                             <div
                                 className="relative w-full max-w-xl mr-6 focus-within:text-purple-500"
                             >
@@ -80,25 +80,23 @@ const TableSection = () => {
                                                 ></div>
                                             </div>
                                             <div>
-                                                <p className="font-semibold">Hans Burger</p>
+                                                <p className="font-semibold">FOKOU Arnaud Cedric</p>
                                                 <p className="text-xs text-gray-600 dark:text-gray-400">
-                                                    10x Developer
+                                                    13Y180
                                                 </p>
                                             </div>
                                         </div>
                                     </td>
                                     <td className="px-4 py-3 text-sm">
-                                        $ 863.45
-                                    </td>
-                                    <td className="px-4 py-3 text-xs">
-                                        <span
-                                            className="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
-                                        >
-                                            Approved
-                                        </span>
+                                        Psychologie
                                     </td>
                                     <td className="px-4 py-3 text-sm">
-                                        6/10/2020
+                                     
+                                           Extermination des incomprehension dans le mode socio-constructiviste generale: cas du cameroun
+                                       
+                                    </td>
+                                    <td className="px-4 py-3 text-sm">
+                                        2019-2022
                                     </td>
                                     <td className="px-4 py-3">
                                         <div className="flex items-center space-x-4 text-sm">
