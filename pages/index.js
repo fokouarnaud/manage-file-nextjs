@@ -1,15 +1,15 @@
 import Head from 'next/head'
-import SimuSection from '../components/SimuSection'
+import TableSection from '../components/TableSection'
 
 
 export default function Home() {
   return (
    <div>
      <Head>
-       <title>Simu</title>
+       <title>file manager</title>
      </Head>
     
-     <SimuSection/>
+     <TableSection/>
     </div>
   )
 }
