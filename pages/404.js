@@ -12,14 +12,14 @@ export const Page404 = () => {
                     404
                 </h1>
                 <p className="text-gray-700 dark:text-gray-300">
-                    Page not found. Check the address or
+                Page non trouvée. Vérifiez l'adresse ou
                     {" "}
                     <a
                         className="text-purple-600 hover:underline dark:text-purple-300"
                        
                     >
                         
-                        go back
+                        retourner a la liste.
                     </a>
                     .
                 </p>

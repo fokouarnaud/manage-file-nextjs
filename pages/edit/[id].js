@@ -1,8 +1,9 @@
 import React from 'react'
+import EditSection from '../../components/EditSection';
 
 const EditPage = () => {
   return (
-    <div>EditPage</div>
+    <div><EditSection/></div>
   )
 }
 
