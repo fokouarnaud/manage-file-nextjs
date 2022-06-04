@@ -7,7 +7,7 @@ const TableSection = () => {
                 <h4
                     className="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
                 >
-                    Table with actions
+                    Liste des memoires
                 </h4>
                 <div>
                     <div className="flex justify-between mb-6">
