@@ -1,7 +1,8 @@
 import React from 'react'
 import TableRows from './TableRows';
+import Link from 'next/link'
 
-const TableSection = ({dataDocs,page}) => {
+const TableSection = ({ dataDocs, page }) => {
     return (
         <div className=" my-10 flex flex-col  h-full justify-center items-center px-6 mx-auto">
             <div >
@@ -32,13 +33,15 @@ const TableSection = ({dataDocs,page}) => {
                             </div>
                         </div>
                         <div>
-                            <button className="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 mr-2 -ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                </svg>
+                            <Link href={`/add`}>
+                                <button className="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 mr-2 -ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                    </svg>
 
-                                <span>Ajouter</span>
-                            </button>
+                                    <span>Ajouter</span>
+                                </button>
+                            </Link>
                         </div>
 
 
@@ -62,21 +65,21 @@ const TableSection = ({dataDocs,page}) => {
                             <tbody
                                 className="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
                             >
-                            {dataDocs.map((doc,key)=>{
-                                return  <TableRows 
-                                nomEtudiant={doc.nom_etudiant}
-                                matriculeEtudiant={doc.matricule_etudiant}
-                                departementEtudiant={doc.departement_etudiant}
-                                anneeSoutenance={doc.annee_soutenance}
-                                titreDoc={doc.titre_doc}
-                                id={doc.id}
-                                key={key}
-                                />
+                                {dataDocs.map((doc, key) => {
+                                    return <TableRows
+                                        nomEtudiant={doc.nom_etudiant}
+                                        matriculeEtudiant={doc.matricule_etudiant}
+                                        departementEtudiant={doc.departement_etudiant}
+                                        anneeSoutenance={doc.annee_soutenance}
+                                        titreDoc={doc.titre_doc}
+                                        id={doc.id}
+                                        key={key}
+                                    />
 
-                            })
-                            
-                           }
-                               
+                                })
+
+                                }
+
 
                             </tbody>
                         </table>
