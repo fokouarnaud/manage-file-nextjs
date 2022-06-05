@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 const TableSection = ({ dataDocs, page }) => {
     return (
-        <div className=" my-10 flex flex-col  h-full justify-center items-center px-6 mx-auto">
+        <div className=" max-w-7xl my-10 flex flex-col  h-full justify-center items-center px-6 mx-auto">
             <div >
                 <h4
                     className="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
