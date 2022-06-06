@@ -1,7 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
+import axios from 'axios';
+import FileUpload from './FileUpload';
+import FileList from './FileList';
 
 const AddSection = () => {
+
+
+    const [files, setFiles] = useState([])
+
+    const removeFile = (filename) => {
+        setFiles(files.filter(file => file.name !== filename))
+    }
+
     return (
         <div className=" my-10 flex flex-col  h-full justify-center items-center px-6 mx-auto">
             <div >
@@ -111,22 +122,11 @@ const AddSection = () => {
                     focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50
                   " rows="3"></textarea>
                         </label>
-                        <label className="block" >
-                            <span className="text-gray-700">Joindre le document</span>
-                            <div className=" mt-2 flex flex-col rounded-lg border-4 border-dashed w-full h-60 p-10 group text-center">
-                                <div className="h-full w-full text-center flex flex-col  justify-center items-center  ">
 
-                                    <div className=" text-gray-300 flex items-center justify-center max-h-48 w-2/5 mx-auto -mt-10">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-24 w-24" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                            <path strokeLinecap="round" strokeLinejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                                        </svg>
+                        <FileUpload files={files} setFiles={setFiles}
+                            removeFile={removeFile} />
 
-                                    </div>
-                                    <p className="pointer-none text-gray-500 "><span className="text-sm">Faire glisser et deposser</span> le fichier ici<br /> ou <a href="" id="" className="text-purple-600 hover:underline">selectionner un fichier</a> sur votre ordinateur</p>
-                                </div>
-                                <input type="file" className="hidden" />
-                            </div>
-                        </label>
+                        <FileList files={files} removeFile={removeFile} />
                         <div className="block">
                             <div className="mt-2">
                                 <div className="flex flex-col items-center justify-center px-6 py-3 -mx-6 -mb-4 space-y-4 sm:space-y-0 sm:space-x-6 sm:flex-row bg-gray-50 dark:bg-gray-800">
@@ -147,5 +147,6 @@ const AddSection = () => {
         </div>
     )
 }
+
 
 export default AddSection;
