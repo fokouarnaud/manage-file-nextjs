@@ -1,22 +1,22 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import axios from 'axios';
-import FileUpload from './FileUpload';
-import FileList from './FileList';
 
+
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import  Preview from './Preview';
+import FileUploader from './FileUploader';
 const AddSection = () => {
 
-
-    const [files, setFiles] = useState([])
-
-    const removeFile = (filename) => {
-        setFiles(files.filter(file => file.name !== filename))
-    }
+    const [files, setFiles] = useState([]);
+    const onSuccess = (savedFiles) => {
+        setFiles(savedFiles)
+    };
 
     return (
         <div className=" my-10 flex flex-col  h-full justify-center items-center px-6 mx-auto">
             <div >
-
                 <h4
                     className="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
                 >
@@ -123,10 +123,9 @@ const AddSection = () => {
                   " rows="3"></textarea>
                         </label>
 
-                        <FileUpload files={files} setFiles={setFiles}
-                            removeFile={removeFile} />
-
-                        <FileList files={files} removeFile={removeFile} />
+                        <FileUploader onSuccess={onSuccess} />
+                        <Preview files={files} />
+                        <ToastContainer />
                         <div className="block">
                             <div className="mt-2">
                                 <div className="flex flex-col items-center justify-center px-6 py-3 -mx-6 -mb-4 space-y-4 sm:space-y-0 sm:space-x-6 sm:flex-row bg-gray-50 dark:bg-gray-800">
