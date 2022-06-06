@@ -1,8 +1,23 @@
-import React from 'react'
+
+import axios from 'axios';
+import useSWR from 'swr';
+import { useRouter } from 'next/router'
 import Link from 'next/link'
+import Spinner from '../../components/Spinner';
+import Error from '../../components/Error';
+
 
 const DetailPage = () => {
+  const router = useRouter()
+  const id= router.isReady? router.query.id:0;
+  const { doc, isLoading, isError } = useDoc(id);
+ 
+
+  if (isLoading) return <Spinner/>
+  if (isError) return <Error/>
+  
   return (
+
     <div>
       <section className="text-gray-600 body-font">
         <div className="container px-5 py-24 mx-auto">
@@ -13,43 +28,43 @@ const DetailPage = () => {
               </svg>
             </div>
             <div className="flex-grow sm:text-left text-center mt-6 sm:mt-0">
-              <h2 className="text-gray-900 text-lg title-font font-medium mb-2">FOKOU Arnaud Cedric</h2>
-              <p className="leading-relaxed text-base"><span className="text-sm">Matricule:</span> 13Y180, <span className="text-sm">Departement:</span> Psychologie, <span className="text-sm">Annee academique:</span> 2019-2021</p>
+              <h2 className="text-gray-900 text-lg title-font font-medium mb-2">{doc.nom_etudiant}</h2>
+              <p className="leading-relaxed text-base"> {doc.matricule_etudiant}, {doc.departement_etudiant}, {doc.annee_soutenance}</p>
 
             </div>
           </div>
           <div className="flex items-center lg:w-3/5 mx-auto border-b pb-10 mb-10 border-gray-200 sm:flex-row flex-col">
             <div className="flex-grow sm:text-left text-center mt-6 sm:mt-0">
               <h2 className="text-gray-900 text-lg title-font font-medium mb-2">Titre memoire</h2>
-              <p className="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
+              <p className="leading-relaxed text-base">{doc.titre_doc}</p>
             </div>
 
           </div>
           <div className="flex items-center lg:w-3/5 mx-auto border-b pb-10 mb-10 border-gray-200 sm:flex-row flex-col">
             <div className="flex-grow sm:text-left text-center mt-6 sm:mt-0">
               <h2 className="text-gray-900 text-lg title-font font-medium mb-2">Mots cles</h2>
-              <p className="leading-relaxed text-base">Images, vilgarite, ecole</p>
+              <p className="leading-relaxed text-base">{doc.mot_cle_doc}</p>
             </div>
 
           </div>
           <div className="flex items-center lg:w-3/5 mx-auto border-b pb-10 mb-10 border-gray-200 sm:flex-row flex-col">
             <div className="flex-grow sm:text-left text-center mt-6 sm:mt-0">
               <h2 className="text-gray-900 text-lg title-font font-medium mb-2">Membres du jury</h2>
-              <p className="leading-relaxed text-base">Dr. Patchenko, Pr. Retri</p>
+              <p className="leading-relaxed text-base">{doc.membre_jury_soutenance}</p>
             </div>
 
           </div>
           <div className="flex items-center lg:w-3/5 mx-auto border-b pb-10 mb-10 border-gray-200 sm:flex-row flex-col">
             <div className="flex-grow sm:text-left text-center mt-6 sm:mt-0">
               <h2 className="text-gray-900 text-lg title-font font-medium mb-2">Directeur de memoire</h2>
-              <p className="leading-relaxed text-base">Pr. Retri</p>
+              <p className="leading-relaxed text-base">{doc.directeur_soutenance}</p>
             </div>
 
           </div>
           <div className="flex items-center lg:w-3/5 mx-auto border-b pb-10 mb-10 border-gray-200 sm:flex-row flex-col">
             <div className="flex-grow sm:text-left text-center mt-6 sm:mt-0">
               <h2 className="text-gray-900 text-lg title-font font-medium mb-2">Description</h2>
-              <p className="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
+              <p className="leading-relaxed text-base">{doc.description_doc}</p>
             </div>
 
           </div>
@@ -104,5 +119,32 @@ const DetailPage = () => {
     </div>
   )
 }
+
+
+function useDoc (id) {
+
+  const apiEndPoint = `https://express-doc.herokuapp.com/documents/${id}`;
+
+  const fetcher = async (url) => {
+    try {
+      const {data:res} = await axios.get(url);
+     
+      return res.data[0];
+    } catch (err) {
+      throw err.response.data;
+    }
+  };
+ 
+  const { data, error } = useSWR(apiEndPoint, fetcher)
+
+  return {
+    doc: data,
+    isLoading: !error && !data,
+    isError: error
+  }
+}
+
+
+
 
 export default DetailPage;

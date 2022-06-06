@@ -149,4 +149,6 @@ const TableSection = ({ dataDocs, page }) => {
     )
 }
 
+
+
 export default TableSection;
