@@ -4,10 +4,10 @@ import Hero2 from '../components/Hero2'
 
 const home = () => {
     return (
-        <div>
+       
             <Hero2/>
-            <Footer/>
-        </div>
+           
+       
     )
 }
 
