@@ -1,3 +1,5 @@
+const plugin = require('tailwindcss/plugin');
+
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
@@ -12,5 +14,12 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/forms'),
+    plugin(function({ addUtilities }) {
+      addUtilities({
+        '.bg-primary-color': {
+          'background-color': '#f4f5f7',
+        }
+      })
+    })
   ],
 }

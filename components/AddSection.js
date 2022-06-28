@@ -5,8 +5,8 @@ import axios from 'axios';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import  Preview from './Preview';
-import FileUploader from './FileUploader';
+import Preview from './Preview';
+
 const AddSection = () => {
 
     const [files, setFiles] = useState([]);
@@ -15,19 +15,20 @@ const AddSection = () => {
     };
 
     return (
-        <div className=" my-10 flex flex-col  h-full justify-center items-center px-6 mx-auto">
-            <div >
+
+        <div className="  p-6 pb-4 max-w-2xl border border-gray-300 rounded-sm my-10 flex flex-col  h-full justify-center items-center px-6 mx-auto">
+            <div className='w-full'>
                 <h4
                     className="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
                 >
                     Ajouter un document
                 </h4>
 
-                <div className="mt-8 max-w-md">
-                    <div className="grid grid-cols-1 gap-6">
-                        <label className="block">
-                            <span className="text-gray-700">Nom complet</span>
-                            <input type="text" className="
+                <div className="mt-8">
+                    <div className="flex flex-col">
+                        <label className="mb-6  block ">
+                            <span className="text-gray-700 mb-2 form-label inline-block">Nom complet</span>
+                            <input type="text" className="form-control
                     mt-1
                     block
                     w-full
@@ -37,8 +38,8 @@ const AddSection = () => {
                     focus:border-purple-300  focus:ring focus:ring-purple-200 focus:ring-opacity-50
                   " placeholder="ex: ERIC  Jama" />
                         </label>
-                        <label className="block">
-                            <span className="text-gray-700">Matricule</span>
+                        <label className="mb-6 block">
+                            <span className="text-gray-700 mb-2 form-label inline-block">Matricule</span>
                             <input type="text" className="
                     mt-1
                     block
@@ -49,8 +50,8 @@ const AddSection = () => {
                     focus:border-purple-300  focus:ring focus:ring-purple-200 focus:ring-opacity-50
                   " placeholder="ex: 13Y180" />
                         </label>
-                        <label className="block">
-                            <span className="text-gray-700">Departement</span>
+                        <label className="mb-6  block">
+                            <span className="text-gray-700 mb-2 form-label inline-block">Departement</span>
                             <input type="text" className="
                     mt-1
                     block
@@ -61,8 +62,8 @@ const AddSection = () => {
                     focus:border-purple-300  focus:ring focus:ring-purple-200 focus:ring-opacity-50
                   " placeholder="ex: Psychologie" />
                         </label>
-                        <label className="block">
-                            <span className="text-gray-700">Titre memoire</span>
+                        <label className="mb-6  block">
+                            <span className="text-gray-700 mb-2 form-label inline-block">Titre memoire</span>
                             <input type="text" className="
                     mt-1
                     block
@@ -73,8 +74,8 @@ const AddSection = () => {
                     focus:border-purple-300  focus:ring focus:ring-purple-200 focus:ring-opacity-50
                   " placeholder="ex: Reflexion sur les images de l'education nationnale" />
                         </label>
-                        <label className="block">
-                            <span className="text-gray-700">Mots cles</span>
+                        <label className=" mb-6  block">
+                            <span className="text-gray-700 mb-2 form-label inline-block">Mots cles</span>
                             <input type="text" className="
                     mt-1
                     block
@@ -85,8 +86,8 @@ const AddSection = () => {
                     focus:border-purple-300  focus:ring focus:ring-purple-200 focus:ring-opacity-50
                   " placeholder="ex: Reflexion, images, education nationnale" />
                         </label>
-                        <label className="block">
-                            <span className="text-gray-700">Membres du jury</span>
+                        <label className="mb-6  block">
+                            <span className="text-gray-700 mb-2 form-label inline-block">Membres du jury</span>
                             <input type="text" className="
                     mt-1
                     block
@@ -97,8 +98,8 @@ const AddSection = () => {
                     focus:border-purple-300  focus:ring focus:ring-purple-200 focus:ring-opacity-50
                   " placeholder="ex: Dr. Patchenko, Pr. Retri" />
                         </label>
-                        <label className="block">
-                            <span className="text-gray-700">Directeur de memoire</span>
+                        <label className="mb-6  block">
+                            <span className="text-gray-700 mb-2 form-label inline-block">Directeur de memoire</span>
                             <input type="text" className="
                     mt-1
                     block
@@ -110,8 +111,8 @@ const AddSection = () => {
                   " placeholder="ex: Pr. Zeto" />
                         </label>
 
-                        <label className="block">
-                            <span className="text-gray-700">Description</span>
+                        <label className="mb-6  block">
+                            <span className="text-gray-700 mb-2 form-label inline-block">Description</span>
                             <textarea className="
                     mt-1
                     block
@@ -123,7 +124,13 @@ const AddSection = () => {
                   " rows="3"></textarea>
                         </label>
 
-                        <FileUploader onSuccess={onSuccess} />
+                        <label className="mb-6  block">
+                            <span className="text-gray-700 mb-2 form-label inline-block">Document</span>
+                           
+                                    
+                                    <input className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" type="file" id="formFile" />
+                               
+                        </label>
                         <Preview files={files} />
                         <ToastContainer />
                         <div className="block">
@@ -144,6 +151,7 @@ const AddSection = () => {
                 </div>
             </div>
         </div>
+
     )
 }
 

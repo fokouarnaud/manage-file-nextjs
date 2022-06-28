@@ -4,7 +4,7 @@ import { toast} from 'react-toastify';
 
 
 
-const FileUploader = ({onSuccess}) => {
+const FileUploader = ({onSuccess,onInputChange,}) => {
     const [files, setFiles] = useState([]);
 
     const onInputChange = (e) => {
@@ -40,7 +40,7 @@ const FileUploader = ({onSuccess}) => {
                        multiple/>
             </div>
 
-            <button>Submit</button>
+  
         </form>
     )
 };

@@ -3,7 +3,7 @@ import AddSection from '../components/AddSection';
 
 export const Add = () => {
   return (
-    <div><AddSection/></div>
+    <AddSection/>
   )
 }
 export default Add;
