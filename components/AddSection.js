@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Link from 'next/link'
-import axios from 'axios';
+import axiosInstance from '../axiosConfig';
 
 
 import { ToastContainer,toast } from 'react-toastify';
@@ -34,7 +34,7 @@ const AddSection = () => {
     
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formData);
+      
 
         const data = new FormData();
 
@@ -43,12 +43,15 @@ const AddSection = () => {
                data.append(key, formData[key]);
             }
         }
+ 
        
-       
-        axios.post('//localhost:8000/upload', data)
+        axiosInstance.post(`/upload`, data,{
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }})
             .then((response) => {
                 toast.success('Upload Success');
-                onSuccess(response.data)
+                
             })
             .catch((e) => {
                 toast.error('Upload Error')
