@@ -3,16 +3,58 @@ import Link from 'next/link'
 import axios from 'axios';
 
 
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer,toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Preview from './Preview';
+
 
 const AddSection = () => {
 
-    const [files, setFiles] = useState([]);
-    const onSuccess = (savedFiles) => {
-        setFiles(savedFiles)
+    const initialFormData = Object.freeze({
+            "file": {},
+            "nom": "",
+            "matricule": "",
+            "departement": "",
+            "titre_memoire": "",
+            "mot_cle": "",
+            "membre_jury": "",
+            "directeur_memoire": "",
+            "description": ""
+          
+    });
+  
+    const [formData, updateFormData] = useState(initialFormData);
+
+    const handleChange = (e) => {
+        const val= e.target.name=='file'?e.target.files[0]: e.target.value.trim();
+        updateFormData({
+          ...formData,
+          [e.target.name]:val
+        });
+      };
+    
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(formData);
+
+        const data = new FormData();
+
+        for (let key in formData) {
+            if (formData.hasOwnProperty(key)) {
+               data.append(key, formData[key]);
+            }
+        }
+       
+       
+        axios.post('//localhost:8000/upload', data)
+            .then((response) => {
+                toast.success('Upload Success');
+                onSuccess(response.data)
+            })
+            .catch((e) => {
+                toast.error('Upload Error')
+            }) 
     };
+
 
     return (
 
@@ -25,10 +67,10 @@ const AddSection = () => {
                 </h4>
 
                 <div className="mt-8">
-                    <div className="flex flex-col">
+                    <form className="flex flex-col">
                         <label className="mb-6  block ">
                             <span className="text-gray-700 mb-2 form-label inline-block">Nom complet</span>
-                            <input type="text" className="form-control
+                            <input name="nom" onChange={handleChange} type="text" className="form-control
                     mt-1
                     block
                     w-full
@@ -40,7 +82,7 @@ const AddSection = () => {
                         </label>
                         <label className="mb-6 block">
                             <span className="text-gray-700 mb-2 form-label inline-block">Matricule</span>
-                            <input type="text" className="
+                            <input name="matricule" onChange={handleChange} type="text" className="
                     mt-1
                     block
                     w-full
@@ -52,7 +94,7 @@ const AddSection = () => {
                         </label>
                         <label className="mb-6  block">
                             <span className="text-gray-700 mb-2 form-label inline-block">Departement</span>
-                            <input type="text" className="
+                            <input  name="departement" onChange={handleChange} type="text" className="
                     mt-1
                     block
                     w-full
@@ -64,7 +106,7 @@ const AddSection = () => {
                         </label>
                         <label className="mb-6  block">
                             <span className="text-gray-700 mb-2 form-label inline-block">Titre memoire</span>
-                            <input type="text" className="
+                            <input name="titre_memoire" onChange={handleChange} type="text" className="
                     mt-1
                     block
                     w-full
@@ -76,7 +118,7 @@ const AddSection = () => {
                         </label>
                         <label className=" mb-6  block">
                             <span className="text-gray-700 mb-2 form-label inline-block">Mots cles</span>
-                            <input type="text" className="
+                            <input name="mot_cle" onChange={handleChange} type="text" className="
                     mt-1
                     block
                     w-full
@@ -88,7 +130,7 @@ const AddSection = () => {
                         </label>
                         <label className="mb-6  block">
                             <span className="text-gray-700 mb-2 form-label inline-block">Membres du jury</span>
-                            <input type="text" className="
+                            <input name="membre_jury" onChange={handleChange} type="text" className="
                     mt-1
                     block
                     w-full
@@ -100,7 +142,7 @@ const AddSection = () => {
                         </label>
                         <label className="mb-6  block">
                             <span className="text-gray-700 mb-2 form-label inline-block">Directeur de memoire</span>
-                            <input type="text" className="
+                            <input name="directeur_memoire" onChange={handleChange} type="text" className="
                     mt-1
                     block
                     w-full
@@ -113,7 +155,7 @@ const AddSection = () => {
 
                         <label className="mb-6  block">
                             <span className="text-gray-700 mb-2 form-label inline-block">Description</span>
-                            <textarea className="
+                            <textarea name="description" onChange={handleChange} className="
                     mt-1
                     block
                     w-full
@@ -128,10 +170,9 @@ const AddSection = () => {
                             <span className="text-gray-700 mb-2 form-label inline-block">Document</span>
                            
                                     
-                                    <input className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" type="file" id="formFile" />
+                                    <input name="file" onChange={handleChange} className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" type="file" id="formFile" />
                                
                         </label>
-                        <Preview files={files} />
                         <ToastContainer />
                         <div className="block">
                             <div className="mt-2">
@@ -141,13 +182,13 @@ const AddSection = () => {
                                             Annuler
                                         </button>
                                     </Link>
-                                    <button className="w-full px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                                    <button  onClick={handleSubmit} className="w-full px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                                         Enregistrer
                                     </button>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
