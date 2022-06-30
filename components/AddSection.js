@@ -16,7 +16,7 @@ const AddSection = () => {
 
     return (
 
-        <div className="  p-6 pb-4 max-w-2xl border border-gray-300 rounded-sm my-10 flex flex-col  h-full justify-center items-center px-6 mx-auto">
+        <div className="  p-6 pb-4 max-w-2xl  my-10 flex flex-col  h-full justify-center items-center px-6 mx-auto">
             <div className='w-full'>
                 <h4
                     className="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"

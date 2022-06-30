@@ -2,11 +2,6 @@ import React, { useContext } from "react";
 
 
 import { CountContext } from "./FormStep";
-import TableSection from "./TableSection";
-import Spinner from './Spinner';
-import Error from './Error';
-import axios from 'axios';
-import useSWR from 'swr';
 
 
 const StepTwo = () => {

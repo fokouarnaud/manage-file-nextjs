@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'next/link';
 
 const EditSection = () => {
+    
     return (
         <div className="p-6 max-w-lg border border-gray-300 rounded-sm my-10 flex flex-col  h-full justify-center items-center px-6 mx-auto">
             <div >
