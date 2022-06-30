@@ -5,7 +5,7 @@ import Link from 'next/link'
 const TableSection = ({ dataDocs, page }) => {
     return (
         <div className=" max-w-7xl my-10 flex flex-col  h-full justify-center items-center px-6 mx-auto">
-            <div >
+            <div className="w-full">
                 
                 <div>
                     <div className="flex justify-between mb-6">
@@ -36,12 +36,12 @@ const TableSection = ({ dataDocs, page }) => {
 
                     </div>
                 </div>
-                <div className=" rounded-lg ">
-                    <div className=" overflow-x-auto">
+                <div className=" rounded-lg  ">
+                    <div className="overflow-x-auto ">
                         <table className="w-full whitespace-no-wrap">
                             <thead>
                                 <tr
-                                    className="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
+                                    className="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b  bg-gray-50"
                                 >
                                     <th className="px-4 py-3">Nom & Matricule </th>
                                     <th className="px-4 py-3">Departement</th>
@@ -51,7 +51,7 @@ const TableSection = ({ dataDocs, page }) => {
                                 </tr>
                             </thead>
                             <tbody
-                                className="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
+                                className="bg-white divide-y"
                             >
                                 {dataDocs.map((doc, key) => {
                                     return <TableRows

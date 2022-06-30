@@ -10,35 +10,35 @@ const TableRows = ({
     id
 }) => {
     return (
-        <tr className="text-gray-700 dark:text-gray-400">
+        <tr className="text-gray-700">
             <td className="px-4 py-3">
-                <div className="flex items-center text-sm">
+                <div className="flex items-center text-base">
 
                     <div>
                         <p className="font-semibold">{nomEtudiant}</p>
-                        <p className="text-xs text-gray-600 dark:text-gray-400">
+                        <p className="text-sm text-gray-60 pt-2">
                             {matriculeEtudiant}
                         </p>
                     </div>
                 </div>
             </td>
-            <td className="px-4 py-3 text-sm">
+            <td className="px-4 py-3 text-base">
                 {departementEtudiant}
             </td>
-            <td className="px-4 py-3 text-sm">
+            <td className="px-4 py-3 text-base">
 
                 {titreDoc}
 
             </td>
-            <td className="px-4 py-3 text-sm">
+            <td className="px-4 py-3 text-base">
                 {anneeSoutenance}
             </td>
             <td className="px-4 py-3">
-                <div className="flex items-center space-x-4 text-sm">
+                <div className="flex items-center space-x-4 text-base">
                     
                     <Link href={`/show/${id}`}>
                         <button
-                            className="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                            className="flex items-center justify-between px-2 py-2 text-base font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                             aria-label="Info"
                         >
 
