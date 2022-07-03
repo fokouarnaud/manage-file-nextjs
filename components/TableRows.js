@@ -12,7 +12,7 @@ const TableRows = ({
     return (
         <tr className="text-gray-700">
             <td className="px-4 py-3">
-                <div className="flex items-center text-base">
+                <div className="flex items-center text-sm">
 
                     <div>
                         <p className="font-semibold">{nomEtudiant}</p>
@@ -22,23 +22,23 @@ const TableRows = ({
                     </div>
                 </div>
             </td>
-            <td className="px-4 py-3 text-base">
+            <td className="px-4 py-3 text-sm">
                 {departementEtudiant}
             </td>
-            <td className="px-4 py-3 text-base">
+            <td className="px-4 py-3 text-sm">
 
                 {titreDoc}
 
             </td>
-            <td className="px-4 py-3 text-base">
+            <td className="px-4 py-3 text-sm">
                 {anneeSoutenance}
             </td>
             <td className="px-4 py-3">
-                <div className="flex items-center space-x-4 text-base">
+                <div className="flex items-center space-x-4 text-sm">
                     
                     <Link href={`/show/${id}`}>
                         <button
-                            className="flex items-center justify-between px-2 py-2 text-base font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                            className="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                             aria-label="Info"
                         >
 
