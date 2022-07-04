@@ -19,7 +19,7 @@ const AddSection = () => {
 
     const styles = {
         label: 'text-gray-700 mb-2 form-label inline-block',
-        field: 'form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-300  focus:ring focus:ring-purple-200 focus:ring-opacity-50',
+        field: 'form-control mt-1 block w-full rounded-md bg-gray-100 border-transparent  focus:border-purple-500  focus:ring-0 focus:bg-white',
         file: 'form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none',
         button:
             ' bg-gray-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600',
@@ -172,7 +172,7 @@ const AddSection = () => {
                         <label className="mb-6  block">
                             <span htmlFor="membre_jury" className={styles.label}>Membres du jury</span>
                             <input
-                                value={values.mot_cle}
+                                value={values.membre_jury}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 id="membre_jury"
