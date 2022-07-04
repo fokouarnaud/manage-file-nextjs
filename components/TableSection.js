@@ -1,12 +1,16 @@
 import React from 'react'
 import TableRows from './TableRows';
-import Link from 'next/link'
 
-const TableSection = ({ dataDocs, page }) => {
+
+import ReactPaginate from 'react-paginate';
+
+
+const TableSection = ({ dataDocs, page ,handlePageClick ,pageCount}) => {
+
     return (
         <div className=" max-w-7xl my-10 flex flex-col  h-full justify-center items-center px-6 mx-auto">
             <div className="w-full">
-                
+
                 <div>
                     <div className="flex justify-between mb-6">
 
@@ -29,7 +33,7 @@ const TableSection = ({ dataDocs, page }) => {
                             </div>
                         </div>
                         <div>
-                           
+
                         </div>
 
 
@@ -79,6 +83,25 @@ const TableSection = ({ dataDocs, page }) => {
                         <span className="col-span-2"></span>
                         <span className="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
                             <nav aria-label="Table navigation">
+                            <ReactPaginate
+                             previousLabel={'<'}
+                             nextLabel={'>'}
+                            breakLabel={"..."}
+                            pageCount={pageCount}
+                            marginPagesDisplayed={2}
+                            pageRangeDisplayed={3}
+                            onPageChange={handlePageClick}
+                            containerClassName={"inline-flex items-center"}
+                            pageClassName={"page-item"}
+                            pageLinkClassName={"px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple"}
+                            previousClassName={"page-item"}
+                            previousLinkClassName={"page-link"}
+                            nextClassName={"page-item"}
+                            nextLinkClassName={"page-link"}
+                            breakClassName={"page-item"}
+                            breakLinkClassName={"px-3 py-1 text-white transition-colors duration-150 bg-purple-600 border border-r-0 border-purple-600 rounded-md focus:outline-none focus:shadow-outline-purple"}
+                            activeClassName={"active"}
+                        />
                                 <ul className="inline-flex items-center">
                                     <li>
                                         <button className="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-purple" aria-label="Previous">
@@ -130,6 +153,8 @@ const TableSection = ({ dataDocs, page }) => {
                                 </ul>
                             </nav>
                         </span>
+
+             
                     </div>
                 </div>
             </div>

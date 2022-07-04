@@ -1,49 +1,74 @@
 import Head from 'next/head'
-
+import { useEffect, useState } from "react";
 import axios from 'axios';
 import useSWR from 'swr';
 
 import TableSection from "../components/TableSection";
 import Spinner from '../components/Spinner';
 import Error from '../components/Error';
+import FilterBox from './filterBox';
 
 
 
 const Home = () => {
- 
-  const { docs, isLoading, isError } = useDocs();
+  const [pageConfig, setPageConfig] = useState({
+    currentPage: 1,
+    limit: 10
+  });
 
-  if (isLoading) return <Spinner/>
-  if (isError) return <Error/>
+  const { docs, isLoading, isError } = useDocs(
+    pageConfig.currentPage,
+    pageConfig.limit
+  );
+
+  const handlePageClick = async (data) => {
+    console.log(data.selected+1);
+
+    setPageConfig({
+      ...pageConfig,
+      currentPage:data.selected+1,
+     
+    });
+
+  };
+
+  if (isLoading) return <Spinner />
+  if (isError) return <Error />
 
   return (
     <div >
       <Head>
         <title>Documents</title>
       </Head>
-    
+<FilterBox>
       <TableSection
         dataDocs={docs.data}
-        page={docs.meta.page} />
-      
+        page={docs.meta.page}
+        limit={docs.meta.limit}
+        baseUrlDocSrc={docs.meta.base_url}
+        handlePageClick={handlePageClick}
+        pageCount={Math.ceil(docs.meta.total_count/ docs.meta.limit)}
+
+      />
+      </FilterBox>
+
     </div>
   )
 }
 
-function useDocs () {
+function useDocs(page, limit) {
 
-  const apiEndPoint = "https://express-doc.herokuapp.com/documents";
+  const apiEndPoint = `https://express-doc.herokuapp.com/documents?page=${page}&limit=${limit}`;
 
   const fetcher = async (url) => {
     try {
-      const {data:res} = await axios.get(url);
-     
+      const { data: res } = await axios.get(url);
       return res;
     } catch (err) {
       throw err.response.data;
     }
   };
- 
+
   const { data, error } = useSWR(apiEndPoint, fetcher)
 
   return {
