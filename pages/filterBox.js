@@ -168,7 +168,7 @@ export default function FilterBox({children}) {
 
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative z-10 flex items-baseline justify-between pt-24 pb-6 border-b border-gray-200">
-            <h1 className="text-4xl font-extrabold tracking-tight text-gray-900">New Arrivals</h1>
+            <h1 className="text-4xl font-extrabold tracking-tight text-gray-900">Documents</h1>
 
             <div className="flex items-center">
               <Menu as="div" className="relative inline-block text-left">
@@ -293,7 +293,7 @@ export default function FilterBox({children}) {
               {/* Product grid */}
               <div className="lg:col-span-3">
                 {/* Replace with your content */}
-                <div className="  border-4 border-dashed border-gray-200 rounded-lg h-full">
+                <div className=" pb-6 border-4 border-dashed border-gray-200 rounded-lg h-full">
                 {children}
                 </div>
                 {/* /End replace */}
