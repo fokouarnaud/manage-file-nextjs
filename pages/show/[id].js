@@ -82,7 +82,7 @@ const DetailPage = () => {
               <span>  Retour a la liste</span>
             </button>
           </Link>
-          <Link href={`/edit/1`}>
+          <Link href={`/edit/${id}`}>
             <button className="flex items-center justify-between px-5 py-3 text-sm font-medium leading-5  text-gray-700 transition-colors duration-150 border border-gray-300 rounded-lg dark:text-gray-400 sm:px-4 sm:py-2 sm:w-auto active:bg-transparent hover:border-gray-500 focus:border-gray-500 active:text-gray-500 focus:outline-none focus:shadow-outline-graye">
 
               <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 mr-2 -ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
