@@ -14,7 +14,7 @@ import FilterSelect from '../components/filterSelect';
 const Home = () => {
   const [pageConfig, setPageConfig] = useState({
     currentPage: 1,
-    limit: 2
+    limit: 5
   });
 
   const { docs, isLoading, isError } = useDocs(
@@ -22,15 +22,13 @@ const Home = () => {
     pageConfig.limit
   );
 
-  const handlePageClick = async (data) => {
-    console.log(data.selected + 1);
-
+  const handleChangeLimit = (e) => {
+    console.log(e.target.value);
     setPageConfig({
       ...pageConfig,
-      currentPage: data.selected + 1,
+      limit: e.target.value,
 
     });
-
   };
   const onPageChange = (page) => {
     setPageConfig({
@@ -69,9 +67,7 @@ const Home = () => {
         </div>
 
         <section aria-labelledby="products-heading" className="pt-6 pb-24">
-          <h2 id="products-heading" className="sr-only">
-            Products
-          </h2>
+         
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-8 gap-y-10">
 
             {/* Product grid */}
@@ -85,8 +81,10 @@ const Home = () => {
                   limit={docs.meta.limit}
                   baseUrlDocSrc={docs.meta.base_url}
                   handlePageClick={onPageChange}
-                  pageCount={Math.ceil(docs.meta.total_count / docs.meta.limit)}
+                  handleChangeLimit={handleChangeLimit}
+                  pageCount={docs.meta.page_count}
                   totalCount={docs.meta.total_count}
+                  
 
                 />
               </div>
