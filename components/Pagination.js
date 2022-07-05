@@ -38,8 +38,7 @@ const Pagination = props => {
         <ul
             className="inline-flex items-center"
         >
-            <li
-               
+            <li key={"-1"}
                
             >
                   <button disabled={currentPage == 1}  onClick={onPrevious} className={classnames("px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-purple", {
@@ -50,21 +49,17 @@ const Pagination = props => {
                                             </svg>
                                         </button>
             </li>
-            {paginationRange.map((pageNumber) => {
+            {paginationRange.map((pageNumber,index) => {
                 if (pageNumber === DOTS) {
-                    return <li  className="pagination-item dots">&#8230;</li>;
+                    return <li key={index.toString()} className="pagination-item dots">&#8230;</li>;
                 }
-                    console.log("pageNumber: "+ pageNumber);
-                    console.log("currentPage: "+ currentPage);
-                    console.log(pageNumber != currentPage);
+
                 return (
                     <li
-                        className={classnames('pagination-item', {
-                            selected: pageNumber === currentPage
-                        })}
-                        onClick={() => onPageChange(pageNumber)}
+                        key={index.toString()} 
+                       
                     >
-                         <button  className={classnames({'px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple': pageNumber != currentPage}, {
+                         <button  onClick={() => onPageChange(pageNumber)}  className={classnames({'px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple': pageNumber != currentPage}, {
                             'px-3 py-1 text-white transition-colors duration-150 bg-purple-600 border border-r-0 border-purple-600 rounded-md focus:outline-none focus:shadow-outline-purple': pageNumber == currentPage
                         })}>
                         {pageNumber}
@@ -74,7 +69,7 @@ const Pagination = props => {
             })}
             <li
               
-               
+               key={"-4"}
             >
                 <button disabled={currentPage == lastPage} onClick={onNext} className={classnames("px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-purple", {
                             'cursor-not-allowed  disabled:opacity-25': currentPage == lastPage
