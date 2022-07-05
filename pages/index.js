@@ -47,7 +47,7 @@ const Home = () => {
       <Head>
         <title>Documents</title>
       </Head>
-<FilterBox>
+
       <TableSection
         dataDocs={docs.data}
         page={docs.meta.page}
@@ -58,7 +58,7 @@ const Home = () => {
         totalCount={docs.meta.total_count}
 
       />
-      </FilterBox>
+     
 
     </div>
   )
