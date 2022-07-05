@@ -13,7 +13,7 @@ import FilterBox from './filterBox';
 const Home = () => {
   const [pageConfig, setPageConfig] = useState({
     currentPage: 1,
-    limit: 10
+    limit: 2
   });
 
   const { docs, isLoading, isError } = useDocs(
@@ -31,6 +31,13 @@ const Home = () => {
     });
 
   };
+  const onPageChange=(page)=>{
+    setPageConfig({
+      ...pageConfig,
+      currentPage:page,
+     
+    });
+  }
 
   if (isLoading) return <Spinner />
   if (isError) return <Error />
@@ -46,8 +53,9 @@ const Home = () => {
         page={docs.meta.page}
         limit={docs.meta.limit}
         baseUrlDocSrc={docs.meta.base_url}
-        handlePageClick={handlePageClick}
+        handlePageClick={onPageChange}
         pageCount={Math.ceil(docs.meta.total_count/ docs.meta.limit)}
+        totalCount={docs.meta.total_count}
 
       />
       </FilterBox>

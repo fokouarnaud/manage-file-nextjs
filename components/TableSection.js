@@ -3,9 +3,10 @@ import TableRows from './TableRows';
 
 
 import ReactPaginate from 'react-paginate';
+import Pagination from './Pagination';
 
 
-const TableSection = ({ dataDocs, page ,handlePageClick ,pageCount}) => {
+const TableSection = ({ dataDocs, page ,handlePageClick ,limit, totalCount}) => {
 
     return (
         <div className=" max-w-7xl my-10 flex flex-col  h-full justify-center items-center px-6 mx-auto">
@@ -83,74 +84,14 @@ const TableSection = ({ dataDocs, page ,handlePageClick ,pageCount}) => {
                         <span className="col-span-2"></span>
                         <span className="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
                             <nav aria-label="Table navigation">
-                            <ReactPaginate
-                             previousLabel={'<'}
-                             nextLabel={'>'}
-                            breakLabel={"..."}
-                            pageCount={pageCount}
-                            marginPagesDisplayed={2}
-                            pageRangeDisplayed={3}
+                          <Pagination
+                            className="pagination-bar"
+                            currentPage={page}
+                            totalCount={totalCount}
+                            pageSize={limit}
                             onPageChange={handlePageClick}
-                            containerClassName={"inline-flex items-center"}
-                            pageClassName={"page-item"}
-                            pageLinkClassName={"px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple"}
-                            previousClassName={"page-item"}
-                            previousLinkClassName={"page-link"}
-                            nextClassName={"page-item"}
-                            nextLinkClassName={"page-link"}
-                            breakClassName={"page-item"}
-                            breakLinkClassName={"px-3 py-1 text-white transition-colors duration-150 bg-purple-600 border border-r-0 border-purple-600 rounded-md focus:outline-none focus:shadow-outline-purple"}
-                            activeClassName={"active"}
-                        />
-                                <ul className="inline-flex items-center">
-                                    <li>
-                                        <button className="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-purple" aria-label="Previous">
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 " fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-                                            </svg>
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button className="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">
-                                            1
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button className="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">
-                                            2
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button className="px-3 py-1 text-white transition-colors duration-150 bg-purple-600 border border-r-0 border-purple-600 rounded-md focus:outline-none focus:shadow-outline-purple">
-                                            3
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button className="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">
-                                            4
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <span className="px-3 py-1">...</span>
-                                    </li>
-                                    <li>
-                                        <button className="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">
-                                            8
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button className="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">
-                                            9
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button className="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-purple" aria-label="Next">
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                                            </svg>
-                                        </button>
-                                    </li>
-                                </ul>
+                          />
+                                
                             </nav>
                         </span>
 
