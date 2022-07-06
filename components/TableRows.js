@@ -26,8 +26,9 @@ const TableRows = ({
                 {departementEtudiant}
             </td>
             <td className="px-4 py-3 text-sm">
-
-                {titreDoc}
+            <Link href={`/show/${id}`}>
+               <a className='font-medium leading-5 text-purple-600 underline underline-offset-2' hreh="#">{titreDoc}</a> 
+                </Link>
 
             </td>
             <td className="px-4 py-3 text-sm">
@@ -38,7 +39,7 @@ const TableRows = ({
                     
                     <Link href={`/show/${id}`}>
                         <button
-                            className="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                            className="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg  focus:outline-none focus:shadow-outline-gray"
                             aria-label="Info"
                         >
 
