@@ -7,6 +7,7 @@ import SearchForm from './SearchForm';
 
 const TableSection = ({ dataDocs,
      page,
+     baseUrlDocSrc,
       handlePageClick, 
       handleChangeLimit,
       handleChangeSearchBy,
@@ -74,6 +75,7 @@ const TableSection = ({ dataDocs,
                                         matriculeEtudiant={doc.matricule_etudiant}
                                         departementEtudiant={doc.departement_etudiant}
                                         anneeSoutenance={doc.annee_soutenance}
+                                        srcDoc={`${baseUrlDocSrc}/${doc.source_doc}`}
                                         titreDoc={doc.titre_doc}
                                         id={doc.id}
                                         key={key}

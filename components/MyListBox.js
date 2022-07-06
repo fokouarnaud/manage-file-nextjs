@@ -74,7 +74,7 @@ const MyListBox = ({departement, type_doc, annee}) => {
                   dataDocs={docs.data}
                   page={docs.meta.page}
                   limit={pageConfig.limit}
-                  baseUrlDocSrc={docs.meta.base_url}
+                  baseUrlDocSrc={docs.meta.baser_url}
                   handlePageClick={onPageChange}
                   handleChangeLimit={handleChangeLimit}
                   handleChangeSearchBy={handleChangeSearchBy}
