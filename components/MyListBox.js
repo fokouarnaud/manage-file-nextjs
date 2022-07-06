@@ -88,7 +88,7 @@ const MyListBox = ({departement, type_doc, annee}) => {
 }
 
 function useDocs(page, limit,searchBy,searchValue,departement="",type_doc="",annee="") {
-  console.log(departement);
+ 
 
   const apiEndPoint = `https://express-doc.herokuapp.com/documents?page=${page}&limit=${limit}&${searchBy}=${searchValue}
   ${departement==""?"":`&departement=${departement}`}

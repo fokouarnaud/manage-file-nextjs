@@ -84,7 +84,7 @@ const Home = () => {
   });
 
   const onClickFilterBtn=(values)=>{
-    console.log(values);
+   
     setMyFilter({
       ...myfilter,
       departement:values.departement,
@@ -92,7 +92,7 @@ const Home = () => {
       annee:values.annee
     })
   }
-console.log(myfilter.departement)
+
 
   return (
     <div >
