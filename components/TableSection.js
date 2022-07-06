@@ -22,9 +22,9 @@ const TableSection = ({ dataDocs, page, handlePageClick, handleChangeLimit, limi
 
                         <div className="flex flex-col  md:flex-row  justify-center  md:justify-start items-center flex-1 ">
                         <div className="flex flex-row mb-1 mr-6 sm:mb-0">
-                                    <div className="relative">
+                                    <div className="relative ">
                                         <select onChange={handleChangeLimit}
-                                            className=" h-full rounded-l border block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                                            className=" cursor-pointer block w-full mt-1 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0">
                                             <option>5</option>
                                             <option>10</option>
                                             <option>20</option>
@@ -38,13 +38,15 @@ const TableSection = ({ dataDocs, page, handlePageClick, handleChangeLimit, limi
                             >
                                 <div className="absolute inset-y-0 right-0 flex items-center pr-2">
                                     <button>
-                                        <svg xmlns="http://www.w3.org/2000/svg" className=" h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" className=" h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                         </svg>
                                     </button>
                                 </div>
+                                {/*className="w-full min-w-0 block px-3 py-2 pr-8 pl-2 text-sm text-gray-700 placeholder-gray-600 bg-gray-100 border-0 rounded-md dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:placeholder-gray-500 focus:bg-white focus:border-purple-300 focus:outline-none focus:shadow-outline-purple form-input"*/}
                                 <input
-                                    className="w-full min-w-0 block px-3 py-2 pr-8 pl-2 text-sm text-gray-700 placeholder-gray-600 bg-gray-100 border-0 rounded-md dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:placeholder-gray-500 focus:bg-white focus:border-purple-300 focus:outline-none focus:shadow-outline-purple form-input"
+                                    
+                                    className="block w-full pr-8 pl-2 mt-1 text-gray-700 placeholder-gray-600 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
                                     type="text"
                                     placeholder="Search for projects"
                                     aria-label="Search"

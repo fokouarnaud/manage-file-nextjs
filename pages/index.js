@@ -49,18 +49,20 @@ const Home = () => {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between pt-24 pb-6 border-b border-gray-200">
-          <h1 className="text-4xl font-extrabold tracking-tight text-gray-900">Documents</h1>
-          <div className='flex flex-col md:flex-row md:items-center'>
+          <h1 className=" md:w-1/4 text-4xl font-extrabold tracking-tight text-gray-900">Documents</h1>
+          <div className=' p-6 pb-6 border-4 border-dashed border-gray-200 rounded-lg md:w-3/4 flex flex-col md:flex-row md:flex-wrap gap-y-3 '>
             <div className='flex flex-col mt-6 md:mt-0 mr-6'>
               <FilterSelect key={1} />
             </div>
-            <div className='flex flex-col mt-6 md:mt-0 mr-6 '>
+            <div className='flex flex-col mt-0 md:mt-0 mr-6 '>
               <FilterSelect key={2} />
             </div>
-            <div className='flex flex-col mt-6 md:mt-0 mr-6'>
+            <div className='flex flex-col mt-0 md:mt-0 mr-6'>
               <FilterSelect key={3} />
             </div>
+            <button type="button" class="inline-block px-6 py-2.5 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out">Filtrer</button>
           </div>
+          
 
 
 
