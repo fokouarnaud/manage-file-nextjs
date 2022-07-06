@@ -1,38 +1,35 @@
 import React from 'react'
 import TableRows from './TableRows';
-
-
-import ReactPaginate from 'react-paginate';
 import Pagination from './Pagination';
 
 
 
-const TableSection = ({ dataDocs, page, handlePageClick, handleChangeLimit, limit, totalCount,pageCount }) => {
+const TableSection = ({ dataDocs, page, handlePageClick, handleChangeLimit, limit, totalCount, pageCount }) => {
 
     return (
         <div className=" max-w-7xl my-6 flex flex-col  h-full justify-center items-center px-6 mx-auto">
             <div className="w-full">
-
-
                 <div>
-
-
-
                     <div className="flex justify-between mb-6">
-
                         <div className="flex flex-col  md:flex-row  justify-center  md:justify-start items-center flex-1 ">
-                        <div className="flex flex-row mb-1 mr-6 sm:mb-0">
-                                    <div className="relative ">
-                                        <select onChange={handleChangeLimit}
-                                            className=" cursor-pointer block w-full mt-1 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0">
-                                            <option>5</option>
-                                            <option>10</option>
-                                            <option>20</option>
-                                        </select>
-                                        
-                                    </div>
-                                    
+                            <div className="flex flex-row mb-1 mr-0 sm:mb-0">
+                                <div className="relative ">
+                                    <select onChange={handleChangeLimit}
+                                        className=" cursor-pointer block w-full mt-1 bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0">
+                                        <option>5</option>
+                                        <option>10</option>
+                                        <option>20</option>
+                                    </select>
+                                </div> 
+                                <div className="relative ">
+                                    <select 
+                                        className=" cursor-pointer block w-full mt-1  bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0">
+                                        <option>Matricule</option>
+                                        <option>Nom</option>
+                                    </select>
                                 </div>
+                            </div>
+                            
                             <div
                                 className="relative w-full max-w-xl mr-6 focus-within:text-purple-500"
                             >
@@ -45,18 +42,14 @@ const TableSection = ({ dataDocs, page, handlePageClick, handleChangeLimit, limi
                                 </div>
                                 {/*className="w-full min-w-0 block px-3 py-2 pr-8 pl-2 text-sm text-gray-700 placeholder-gray-600 bg-gray-100 border-0 rounded-md dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:placeholder-gray-500 focus:bg-white focus:border-purple-300 focus:outline-none focus:shadow-outline-purple form-input"*/}
                                 <input
-                                    
-                                    className="block w-full pr-8 pl-2 mt-1 text-gray-700 placeholder-gray-600 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
+
+                                    className="block w-full pr-8 pl-2 mt-1 text-gray-700 placeholder-gray-600 rounded-tr-md rounded-br-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
                                     type="text"
-                                    placeholder="Search for projects"
+                                    placeholder="Search by matricule"
                                     aria-label="Search"
                                 />
                             </div>
-                            
                         </div>
-
-
-
                     </div>
                 </div>
                 <div className=" rounded-lg  ">
@@ -87,17 +80,13 @@ const TableSection = ({ dataDocs, page, handlePageClick, handleChangeLimit, limi
                                         key={key}
                                     />
 
-                                })
-
-                                }
-
-
+                                })}
                             </tbody>
                         </table>
                     </div>
                     <div className="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800">
                         <span className="flex items-center col-span-3">
-                            Showing {(page-1) * limit+1}-{((page-1) * limit+parseInt(pageCount))} of {totalCount}
+                            Showing {(page - 1) * limit + 1}-{((page - 1) * limit + parseInt(pageCount))} of {totalCount}
                         </span>
                         <span className="col-span-2"></span>
                         <span className="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
