@@ -6,27 +6,49 @@ import useSWR from 'swr';
 import TableSection from "./TableSection";
 import Spinner from './Spinner';
 import Error from './Error';
-import FilterSelect from './filterSelect';
+
 
 
 
 const MyListBox = () => {
   const [pageConfig, setPageConfig] = useState({
     currentPage: 1,
-    limit: 5
+    limit: 5,
+    searchBy:"matricule",
+    searchValue:""
   });
 
   const { docs, isLoading, isError } = useDocs(
     pageConfig.currentPage,
-    pageConfig.limit
+    pageConfig.limit,
+    pageConfig.searchBy,
+    pageConfig.searchValue
   );
 
   const handleChangeLimit = (e) => {
-    console.log(e.target.value);
+    e.preventDefault();
     setPageConfig({
       ...pageConfig,
       currentPage: 1,
       limit: e.target.value,
+
+    });
+  };  
+  
+  const handleChangeSearchBy = (e) => {
+    e.preventDefault();
+    setPageConfig({
+      ...pageConfig,
+      searchBy: e.target.value,
+      searchValue:""
+
+    });
+  };
+  const handleChangeSearchValue = (val) => {
+    setPageConfig({
+      ...pageConfig,
+      currentPage: 1,
+      searchValue: val
 
     });
   };
@@ -47,19 +69,26 @@ const MyListBox = () => {
     <TableSection
                   dataDocs={docs.data}
                   page={docs.meta.page}
-                  limit={docs.meta.limit}
+                  limit={pageConfig.limit}
                   baseUrlDocSrc={docs.meta.base_url}
                   handlePageClick={onPageChange}
                   handleChangeLimit={handleChangeLimit}
+                  handleChangeSearchBy={handleChangeSearchBy}
+                  handleChangeSearchValue={handleChangeSearchValue}
                   pageCount={docs.meta.page_count}
                   totalCount={docs.meta.total_count}
+                  searchBy={pageConfig.searchBy}
+                  searchValue={pageConfig.searchValue}
                 />
   )
 }
 
-function useDocs(page, limit) {
+function useDocs(page, limit,searchBy,searchValue) {
 
-  const apiEndPoint = `https://express-doc.herokuapp.com/documents?page=${page}&limit=${limit}`;
+  const apiEndPoint = `https://express-doc.herokuapp.com/documents?page=${page}
+  &limit=${limit}
+  &${searchBy}=${searchValue}
+  `;
 
   const fetcher = async (url) => {
     try {
