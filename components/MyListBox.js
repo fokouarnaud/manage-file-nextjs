@@ -90,10 +90,7 @@ const MyListBox = ({departement, type_doc, annee}) => {
 function useDocs(page, limit,searchBy,searchValue,departement="",type_doc="",annee="") {
  
 
-  const apiEndPoint = `https://express-doc.herokuapp.com/documents?page=${page}&limit=${limit}&${searchBy}=${searchValue}
-  ${departement==""?"":`&departement=${departement}`}
-  ${type_doc==""?"":`&type_doc=${type_doc}`}
-  ${annee==""?"":`&annee=${annee}`}`;
+  const apiEndPoint = `https://express-doc.herokuapp.com/documents?page=${page}&limit=${limit}&${searchBy}=${searchValue}${departement==""?"":`&departement=${departement}`}${type_doc==""?"":`&type_doc=${type_doc}`}${annee==""?"":`&annee=${annee}`}`;
   console.log(apiEndPoint);
 
   const fetcher = async (url) => {
