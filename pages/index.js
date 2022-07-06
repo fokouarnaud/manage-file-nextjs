@@ -1,45 +1,82 @@
-import Head from 'next/head'
-import { useEffect, useState } from "react";
-import axios from 'axios';
-import useSWR from 'swr';
-
-import TableSection from "../components/TableSection";
-import Spinner from '../components/Spinner';
-import Error from '../components/Error';
-import FilterBox from './filterBox';
+import Head from 'next/head';
 import FilterSelect from '../components/filterSelect';
-
-
+import MyListBox from '../components/MyListBox';
 
 const Home = () => {
-  const [pageConfig, setPageConfig] = useState({
-    currentPage: 1,
-    limit: 5
-  });
 
-  const { docs, isLoading, isError } = useDocs(
-    pageConfig.currentPage,
-    pageConfig.limit
-  );
+  const items_departement = [
+    {
+      id: 1,
+      name: 'Tous',
+      avatar:
+        'https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    }, {
+      id: 2,
+      name: 'Didactique des disciplines',
+      avatar:
+        'https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+    {
+      id: 3,
+      name: 'Enseignements fondamentaux en éducation',
+      avatar:
+        'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+    {
+      id: 4,
+      name: 'Education specialisee',
+      avatar:
+        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.25&w=256&h=256&q=80',
+    },
+  ];
+  const items_type_doc = [
+    {
+      id: 1,
+      name: 'Tous',
+      avatar:
+        'https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    }, {
+      id: 2,
+      name: 'Memoire',
+      avatar:
+        'https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+    {
+      id: 3,
+      name: 'These',
+      avatar:
+        'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    }
+  ];
+  const items_annee = [
+    {
+      id: 1,
+      name: 'Tous',
+      avatar:
+        'https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+    {
+      id: 2,
+      name: '2020',
+      avatar:
+        'https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+    {
+      id: 3,
+      name: '2021',
+      avatar:
+        'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+    {
+      id: 4,
+      name: '2022',
+      avatar:
+        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.25&w=256&h=256&q=80',
+    },
+  ];
 
-  const handleChangeLimit = (e) => {
-    console.log(e.target.value);
-    setPageConfig({
-      ...pageConfig,
-      limit: e.target.value,
 
-    });
-  };
-  const onPageChange = (page) => {
-    setPageConfig({
-      ...pageConfig,
-      currentPage: page,
 
-    });
-  }
-
-  if (isLoading) return <Spinner />
-  if (isError) return <Error />
 
   return (
     <div >
@@ -52,43 +89,31 @@ const Home = () => {
           <h1 className=" md:w-1/4 text-4xl font-extrabold tracking-tight text-gray-900">Documents</h1>
           <div className=' p-6 pb-6 border-4 border-dashed border-gray-200 rounded-lg md:w-3/4 flex flex-col md:flex-row md:flex-wrap gap-y-3 '>
             <div className='flex flex-col mt-6 md:mt-0 mr-6'>
-              <FilterSelect key={1} />
+              <FilterSelect key={1} label={"Departement"} items={items_departement} />
             </div>
             <div className='flex flex-col mt-0 md:mt-0 mr-6 '>
-              <FilterSelect key={2} />
+              <FilterSelect key={2} label={"Type document"} items={items_type_doc} />
             </div>
             <div className='flex flex-col mt-0 md:mt-0 mr-6'>
-              <FilterSelect key={3} />
+              <FilterSelect key={3} label={"Annee"} items={items_annee} />
             </div>
-            <button type="button" class="inline-block px-6 py-2.5 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out">Filtrer</button>
+            <button type="button" className=" inline-block px-6 py-2.5 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out">Filtrer</button>
           </div>
-          
+
 
 
 
         </div>
 
         <section aria-labelledby="products-heading" className="pt-6 pb-24">
-         
+
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-8 gap-y-10">
 
             {/* Product grid */}
             <div className="lg:col-span-12">
               {/* Replace with your content */}
               <div className=" pb-6 border-4 border-dashed border-gray-200 rounded-lg h-full">
-
-                <TableSection
-                  dataDocs={docs.data}
-                  page={docs.meta.page}
-                  limit={docs.meta.limit}
-                  baseUrlDocSrc={docs.meta.base_url}
-                  handlePageClick={onPageChange}
-                  handleChangeLimit={handleChangeLimit}
-                  pageCount={docs.meta.page_count}
-                  totalCount={docs.meta.total_count}
-                  
-
-                />
+                <MyListBox />
               </div>
               {/* /End replace */}
             </div>
@@ -99,28 +124,6 @@ const Home = () => {
 
     </div>
   )
-}
-
-function useDocs(page, limit) {
-
-  const apiEndPoint = `https://express-doc.herokuapp.com/documents?page=${page}&limit=${limit}`;
-
-  const fetcher = async (url) => {
-    try {
-      const { data: res } = await axios.get(url);
-      return res;
-    } catch (err) {
-      throw err.response.data;
-    }
-  };
-
-  const { data, error } = useSWR(apiEndPoint, fetcher)
-
-  return {
-    docs: data,
-    isLoading: !error && !data,
-    isError: error
-  }
 }
 
 
