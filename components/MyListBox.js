@@ -26,7 +26,7 @@ const MyListBox = ({departement, type_doc, annee}) => {
     pageConfig.searchValue,
     departement,
     type_doc,
-    pageConfig.annee
+    annee
   );
 
   const handleChangeLimit = (e) => {
