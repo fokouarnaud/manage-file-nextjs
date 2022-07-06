@@ -17,7 +17,7 @@ const TableSection = ({ dataDocs,
         searchBy,
         searchValue }) => {
             
-console.log(limit);
+
     return (
         <div className=" max-w-7xl my-6 flex flex-col  h-full justify-center items-center px-6 mx-auto">
             <div className="w-full">

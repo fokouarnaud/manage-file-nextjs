@@ -10,19 +10,23 @@ import Error from './Error';
 
 
 
-const MyListBox = () => {
+const MyListBox = ({departement, type_doc, annee}) => {
+ 
   const [pageConfig, setPageConfig] = useState({
     currentPage: 1,
     limit: 5,
     searchBy:"matricule",
-    searchValue:""
+    searchValue:"",
   });
 
   const { docs, isLoading, isError } = useDocs(
     pageConfig.currentPage,
     pageConfig.limit,
     pageConfig.searchBy,
-    pageConfig.searchValue
+    pageConfig.searchValue,
+    departement,
+    type_doc,
+    pageConfig.annee
   );
 
   const handleChangeLimit = (e) => {
@@ -83,12 +87,14 @@ const MyListBox = () => {
   )
 }
 
-function useDocs(page, limit,searchBy,searchValue) {
+function useDocs(page, limit,searchBy,searchValue,departement="",type_doc="",annee="") {
+  console.log(departement);
 
-  const apiEndPoint = `https://express-doc.herokuapp.com/documents?page=${page}
-  &limit=${limit}
-  &${searchBy}=${searchValue}
-  `;
+  const apiEndPoint = `https://express-doc.herokuapp.com/documents?page=${page}&limit=${limit}&${searchBy}=${searchValue}
+  ${departement==""?"":`&departement=${departement}`}
+  ${type_doc==""?"":`&type_doc=${type_doc}`}
+  ${annee==""?"":`&annee=${annee}`}`;
+  console.log(apiEndPoint);
 
   const fetcher = async (url) => {
     try {
