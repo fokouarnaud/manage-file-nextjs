@@ -1,49 +1,85 @@
 import Link from 'next/link'
 import axiosInstance from '../axiosConfig';
+import { useState } from 'react';
 
 import { useFormik } from "formik";
-import { registerSchema } from '../schemas';
+import { updateWithoutFileSchema, updateWithFileSchema } from '../schemas';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const onSubmit = async (values, actions) => {
+   
 
     const data = new FormData();
 
+    data.append("is_file_delete",values.hasOwnProperty('file'));
     for (let key in values) {
         if (values.hasOwnProperty(key)) {
             data.append(key, values[key]);
         }
     }
-
-
+    for (const [key, value] of data.entries()) {
+        console.log(key, value);
+    }
+/* 
     axiosInstance.post(`/documents`, data, {
         headers: {
             'Content-Type': 'multipart/form-data'
         }
     }).then((response) => {
-            toast.success('Upload Success');
-            actions.resetForm();
+        toast.success('Upload Success');
+        actions.resetForm();
     }).catch((e) => {
-            toast.error('Upload Error');
+        toast.error('Upload Error');
     });
+ */
 
- 
 };
 
-const EditSection = ({data}) => {
-    
-    const {nom_etudiant:nom,
-        matricule_etudiant:matricule,
-        departement_etudiant:departement,
-        titre_doc:titre_memoire,
-        mot_cle_doc:mot_cle,
-        membre_jury_soutenance:membre_jury,
-        directeur_soutenance:directeur_memoire,
-        description_doc:description
-    }=data;
-  
+const EditSection = ({ data }) => {
+    const [isFileDelete, setIsFIleDelete] = useState(false);
+
+    const { nom_etudiant: nom,
+        matricule_etudiant: matricule,
+        departement_etudiant: departement,
+        titre_doc: titre_memoire,
+        mot_cle_doc: mot_cle,
+        membre_jury_soutenance: membre_jury,
+        directeur_soutenance: directeur_memoire,
+        description_doc: description,
+        source_doc: source_doc
+    } = data;
+
+
+    const initValuesWithFile = {
+        "file": null,
+        "nom": nom,
+        "matricule": matricule,
+        "departement": departement,
+        "titre_memoire": titre_memoire,
+        "mot_cle": mot_cle,
+        "membre_jury": membre_jury,
+        "directeur_memoire": directeur_memoire,
+        "description": description
+    }
+    const initValuesWithoutFile = {
+
+        "source_doc": source_doc,
+        "nom": nom,
+        "matricule": matricule,
+        "departement": departement,
+        "titre_memoire": titre_memoire,
+        "mot_cle": mot_cle,
+        "membre_jury": membre_jury,
+        "directeur_memoire": directeur_memoire,
+        "description": description
+    }
+
+    const initialValues = isFileDelete ? initValuesWithFile  : initValuesWithoutFile;
+    const validationSchema = isFileDelete ?  updateWithFileSchema : updateWithoutFileSchema;
+
+
     const styles = {
         block: 'mb-6  block',
         label: 'text-gray-700 mb-2 form-label inline-block',
@@ -55,6 +91,12 @@ const EditSection = ({data}) => {
         /*errorField:'bg-red-50 border border-red-500 text-red-400 placeholder-red-400 focus:ring-red-500 focus:border-red-500'*/
         errorField: 'bg-red-50  text-red-500 placeholder-red-500 focus:ring-red-500 focus:border-red-500'
     }
+
+    const handleDeleteFile=(e)=>{
+        e.preventDefault();
+        setIsFIleDelete(true);
+
+    }
     const {
         values,
         errors,
@@ -65,18 +107,8 @@ const EditSection = ({data}) => {
         handleSubmit,
         setFieldValue
     } = useFormik({
-        initialValues: {
-            "file": null,
-            "nom": nom,
-            "matricule": matricule,
-            "departement": departement,
-            "titre_memoire": titre_memoire,
-            "mot_cle": mot_cle,
-            "membre_jury": membre_jury,
-            "directeur_memoire": directeur_memoire,
-            "description": description
-        },
-        validationSchema: registerSchema,
+        initialValues: initialValues,
+        validationSchema: validationSchema,
         onSubmit,
     });
 
@@ -208,19 +240,45 @@ const EditSection = ({data}) => {
                             />
                             {errors.description && touched.description && <p className={styles.errorMsg} >{errors.description}</p>}
                         </label>
+                        {isFileDelete ?
+                            <label className={styles.block}>
+                                <span htmlFor="file" className={styles.label} >Document</span>
+                                <input
+                                    onChange={(event) => {
+                                        setFieldValue("file", event.currentTarget.files[0]);
+                                    }}
+                                    id="file" name="file"
+                                    className={`${styles.file} ${errors.file  ? styles.errorField : ""}`}
+                                    type="file" />
+                                 
+                                {errors.file  && <p className={styles.errorMsg} >{errors.file}</p>}
 
-                        <label className={styles.block}>
-                            <span htmlFor="file" className={styles.label} >Document</span>
-                            <input
-                                onChange={(event) => {
-                                    setFieldValue("file", event.currentTarget.files[0]);
-                                }}
-                                id="file" name="file"
-                                className={`${styles.file} ${errors.file && touched.file ? styles.errorField : ""}`}
-                                type="file" />
-                            {errors.file && touched.file && <p className={styles.errorMsg} >{errors.file}</p>}
+                            </label> :
+                            <label className={styles.block}>
+                                <span className={styles.label} >Document</span>
+                                <div className='flex items-center justify-between'>
+                                    <input
+                                    disabled={!isFileDelete}
+                                        htmlFor="source_doc"
+                                        value={values.source_doc.split("/")[1]}
+                                        className={`${styles.file} cursor-not-allowed ${errors.source_doc && touched.source_doc ? styles.errorField : ""}`}
 
-                        </label>
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                        id="source_doc"
+                                        name="source_doc"
+                                    />
+
+
+                                    <button onClick={handleDeleteFile} className='inline-block px-6 py-2  text-red-600 font-medium text-xs leading-tight uppercase rounded  hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out'>
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                        </svg>
+                                    </button>
+                                </div>
+                                {errors.source_doc && touched.source_doc && <p className={styles.errorMsg} >{errors.source_doc}</p>}
+
+                            </label>}
 
                         <div className="block">
                             <div className="mt-2">
