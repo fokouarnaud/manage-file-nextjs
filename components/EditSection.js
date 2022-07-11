@@ -19,11 +19,11 @@ const onSubmit = async (values, actions) => {
             data.append(key, values[key]);
         }
     }
-    for (const [key, value] of data.entries()) {
+   /*  for (const [key, value] of data.entries()) {
         console.log(key, value);
-    }
-/* 
-    axiosInstance.post(`/documents`, data, {
+    } */
+
+    axiosInstance.put(`/documents`, data, {
         headers: {
             'Content-Type': 'multipart/form-data'
         }
@@ -33,7 +33,7 @@ const onSubmit = async (values, actions) => {
     }).catch((e) => {
         toast.error('Upload Error');
     });
- */
+
 
 };
 
