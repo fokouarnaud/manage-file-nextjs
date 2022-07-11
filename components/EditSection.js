@@ -29,10 +29,10 @@ const onSubmit = async (values, actions) => {
             'Content-Type': 'multipart/form-data'
         }
     }).then((response) => {
-        toast.success('Upload Success');
+        toast.success('Document updated successfully');
         actions.resetForm();
     }).catch((e) => {
-        toast.error('Upload Error');
+        toast.error('Update Error');
     });
 
 
