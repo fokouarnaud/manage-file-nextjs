@@ -20,7 +20,7 @@ const EditPage = () => {
 
   return (
    
-    <div><EditSection data={doc}/></div>
+    <div><EditSection  data={doc}/></div>
   )
 }
 

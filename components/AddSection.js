@@ -57,6 +57,7 @@ const AddSection = () => {
         setFieldValue
     } = useFormik({
         initialValues: {
+            
             "file": null,
             "nom": "",
             "matricule": "",

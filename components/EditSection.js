@@ -9,21 +9,22 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const onSubmit = async (values, actions) => {
-   
+
 
     const data = new FormData();
 
-    data.append("is_file_delete",values.hasOwnProperty('file'));
+    data.append("is_file_delete", values.hasOwnProperty('file'));
     for (let key in values) {
         if (values.hasOwnProperty(key)) {
             data.append(key, values[key]);
         }
     }
-   /*  for (const [key, value] of data.entries()) {
-        console.log(key, value);
-    } */
+    /*  for (const [key, value] of data.entries()) {
+         console.log(key, value);
+     } */
+   
 
-    axiosInstance.put(`/documents`, data, {
+    axiosInstance.put(`/documents/${values.id_student}`, data, {
         headers: {
             'Content-Type': 'multipart/form-data'
         }
@@ -40,7 +41,9 @@ const onSubmit = async (values, actions) => {
 const EditSection = ({ data }) => {
     const [isFileDelete, setIsFIleDelete] = useState(false);
 
-    const { nom_etudiant: nom,
+    const {
+        id: id_student,
+        nom_etudiant: nom,
         matricule_etudiant: matricule,
         departement_etudiant: departement,
         titre_doc: titre_memoire,
@@ -53,6 +56,7 @@ const EditSection = ({ data }) => {
 
 
     const initValuesWithFile = {
+        "id_student": id_student,
         "file": null,
         "nom": nom,
         "matricule": matricule,
@@ -64,7 +68,7 @@ const EditSection = ({ data }) => {
         "description": description
     }
     const initValuesWithoutFile = {
-
+        "id_student": id_student,
         "source_doc": source_doc,
         "nom": nom,
         "matricule": matricule,
@@ -76,8 +80,8 @@ const EditSection = ({ data }) => {
         "description": description
     }
 
-    const initialValues = isFileDelete ? initValuesWithFile  : initValuesWithoutFile;
-    const validationSchema = isFileDelete ?  updateWithFileSchema : updateWithoutFileSchema;
+    const initialValues = isFileDelete ? initValuesWithFile : initValuesWithoutFile;
+    const validationSchema = isFileDelete ? updateWithFileSchema : updateWithoutFileSchema;
 
 
     const styles = {
@@ -92,7 +96,7 @@ const EditSection = ({ data }) => {
         errorField: 'bg-red-50  text-red-500 placeholder-red-500 focus:ring-red-500 focus:border-red-500'
     }
 
-    const handleDeleteFile=(e)=>{
+    const handleDeleteFile = (e) => {
         e.preventDefault();
         setIsFIleDelete(true);
 
@@ -248,17 +252,17 @@ const EditSection = ({ data }) => {
                                         setFieldValue("file", event.currentTarget.files[0]);
                                     }}
                                     id="file" name="file"
-                                    className={`${styles.file} ${errors.file  ? styles.errorField : ""}`}
+                                    className={`${styles.file} ${errors.file ? styles.errorField : ""}`}
                                     type="file" />
-                                 
-                                {errors.file  && <p className={styles.errorMsg} >{errors.file}</p>}
+
+                                {errors.file && <p className={styles.errorMsg} >{errors.file}</p>}
 
                             </label> :
                             <label className={styles.block}>
                                 <span className={styles.label} >Document</span>
                                 <div className='flex items-center justify-between'>
                                     <input
-                                    disabled={!isFileDelete}
+                                        disabled={!isFileDelete}
                                         htmlFor="source_doc"
                                         value={values.source_doc.split("/")[1]}
                                         className={`${styles.file} cursor-not-allowed ${errors.source_doc && touched.source_doc ? styles.errorField : ""}`}
