@@ -89,7 +89,7 @@ const DetailPage = () => {
   
     let pageNumber = doc.internal.getNumberOfPages()
  
-    
+    let  totalPagesExp = '{total_pages_count_string}'
     doc.autoTable({
       columns: [
         { dataKey: 'fr', header: '' },
@@ -106,12 +106,22 @@ const DetailPage = () => {
        
         {fr:'Paix - Travail - Patrie',en:'Peace - Work - Fatherland'},
         {fr:'***',en:'***'},
-        {fr:'UNIVERSITE DE YOUNDE I',en:'THE UNIVERSITY OF YOUNDE I'},
+        {fr:'UNIVERSITE DE YAOUNDE I',en:'THE UNIVERSITY OF YAOUNDE I'},
         {fr:'***',en:'***'},
         {fr:'FACULTE DES SCIENCES DE',en:'THE FACULTY OF'},
         {fr:'L\'EDUCATION',en:'EDUCATION'},
         {fr:'***',en:'***'}
       ],
+      didDrawPage: function (data) {
+        // Header
+  
+        if (base64Img) {
+          doc.addImage(base64Img, 'JPEG', data.settings.margin.left+90, 15, 24, 24)
+        }
+       
+  
+       
+      },
       startY: 8,
       showHead: 'firstPage',
       theme:'plain',
@@ -124,17 +134,10 @@ const DetailPage = () => {
     doc.setPage(pageNumber)
   
 
-    doc.autoTable({ startY: 240, head: headRows(), body: bodyRows(25) })
+    doc.autoTable({ startY: doc.lastAutoTable.finalY + 10,head: headRows(), body: bodyRows(5), pageBreak: 'avoid' })
   
-    for (var j = 0; j < 3; j++) {
-      doc.autoTable({
-        head: headRows(),
-        body: bodyRows(),
-        startY: doc.lastAutoTable.finalY + 10,
-        pageBreak: 'avoid',
-      })
-    }
 
+   
 
     doc.save(`report.pdf`);
   }
