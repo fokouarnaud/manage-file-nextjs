@@ -93,6 +93,25 @@ const DetailPage = () => {
     return [{
       titre_doc:doc.titre_doc
     }]
+  } 
+  function bodyRowsMotCle(){
+    
+    return [{
+      mot_cle:doc.mot_cle_doc
+    }]
+  }
+  
+  function bodyRowsMembreJury(){
+    
+    return [{
+      membre_jury:doc.membre_jury_soutenance
+    }]
+  }
+function bodyRowsDescription(){
+    
+    return [{
+      description:doc.description_doc
+    }]
   }
 
   const handleGeneratePDF = () => {
@@ -150,17 +169,37 @@ const DetailPage = () => {
     doc.setPage(pageNumber)
   
 
-    doc.autoTable({ startY: doc.lastAutoTable.finalY + 10,head: [
+    doc.autoTable({ startY: doc.lastAutoTable.finalY + 20,head: [
       {nom: 'Nom & Prenom',matricule:'Matricule', document:'Document',departement:'Departement',annee:'Annee'}
   
-    ], body: bodyRowsFirst(), pageBreak: 'avoid' }) 
+    ], theme:'plain', body: bodyRowsFirst(), pageBreak: 'avoid' }) 
 
-
-    doc.autoTable({ startY: doc.lastAutoTable.finalY + 4,head: [
+//
+    doc.autoTable({ startY: doc.lastAutoTable.finalY + 10,head: [
       {titre_doc: 'Titre document'}
   
     ], tableHeight: 'wrap',
-    styles: { overflow: 'hidden',cellPadding: 0.5, fontSize: 10 }, theme:'plain',body: bodyRowsTitre(), pageBreak: 'avoid' })
+    styles: {cellPadding: 0.8 }, theme:'plain',body: bodyRowsTitre(), pageBreak: 'avoid' })
+    //
+    doc.autoTable({ startY: doc.lastAutoTable.finalY + 4,head: [
+      {mot_cle: 'Mots cles'}
+  
+    ], tableHeight: 'wrap',
+    styles: { cellPadding: 0.8 }, theme:'plain',body: bodyRowsMotCle(), pageBreak: 'avoid' }) 
+    
+    //
+    doc.autoTable({ startY: doc.lastAutoTable.finalY + 4,head: [
+      {membre_jury: 'Membres du jury'}
+  
+    ], tableHeight: 'wrap',
+    styles: {cellPadding: 0.8, fontSize: 10 }, theme:'plain',body: bodyRowsMembreJury(), pageBreak: 'avoid' })
+  
+    //
+    doc.autoTable({ startY: doc.lastAutoTable.finalY + 4,head: [
+      {description: 'Resume'}
+  
+    ], tableHeight: 'wrap',
+    styles: {cellPadding: 0.8, fontSize: 10 }, theme:'plain',body: bodyRowsDescription(), pageBreak: 'avoid' })
   
 
    
