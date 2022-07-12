@@ -78,6 +78,22 @@ const DetailPage = () => {
     }
     return body
   }
+  function bodyRowsFirst(){
+    
+    return [{
+      nom:doc.nom_etudiant,
+      matricule:doc.matricule_etudiant,
+      departement:doc.departement_etudiant,
+      annee:doc.annee_soutenance,
+      document:"Memoire"
+    }]
+  } 
+  function bodyRowsTitre(){
+    
+    return [{
+      titre_doc:doc.titre_doc
+    }]
+  }
 
   const handleGeneratePDF = () => {
     //lorem.generateSentences(7)
@@ -134,7 +150,17 @@ const DetailPage = () => {
     doc.setPage(pageNumber)
   
 
-    doc.autoTable({ startY: doc.lastAutoTable.finalY + 10,head: headRows(), body: bodyRows(5), pageBreak: 'avoid' })
+    doc.autoTable({ startY: doc.lastAutoTable.finalY + 10,head: [
+      {nom: 'Nom & Prenom',matricule:'Matricule', document:'Document',departement:'Departement',annee:'Annee'}
+  
+    ], body: bodyRowsFirst(), pageBreak: 'avoid' }) 
+
+
+    doc.autoTable({ startY: doc.lastAutoTable.finalY + 4,head: [
+      {titre_doc: 'Titre document'}
+  
+    ], tableHeight: 'wrap',
+    styles: { overflow: 'hidden',cellPadding: 0.5, fontSize: 10 }, theme:'plain',body: bodyRowsTitre(), pageBreak: 'avoid' })
   
 
    
