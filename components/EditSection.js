@@ -4,48 +4,58 @@ import { useState } from 'react';
 
 import { useFormik } from "formik";
 import { updateWithoutFileSchema, updateWithFileSchema } from '../schemas';
+import { items_departement, items_type_doc, items_annee } from '../lib/data';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const onSubmit = async (values, actions) => {
 
-
-    const data = new FormData();
-
-    data.append("is_file_delete", values.hasOwnProperty('file'));
-    for (let key in values) {
-        if (values.hasOwnProperty(key)) {
-            data.append(key, values[key]);
-        }
-    }
-    /*  for (const [key, value] of data.entries()) {
-         console.log(key, value);
-     } */
-   
-
-    axiosInstance.put(`/documents/${values.id_student}`, data, {
-        headers: {
-            'Content-Type': 'multipart/form-data'
-        }
-    }).then((response) => {
-        toast.success('Document updated successfully');
-        actions.resetForm();
-    }).catch((e) => {
-        toast.error('Update Error');
-    });
-
-
-};
 
 const EditSection = ({ data }) => {
-    const [isFileDelete, setIsFIleDelete] = useState(false);
+  
+    const [myState, setMyState] = useState({
+        isFileDelete:false,
+       isLoading:false
+    });
 
+    const onSubmit = async (values, actions) => {
+
+
+        const data = new FormData();
+      
+    
+        data.append("is_file_delete", values.hasOwnProperty('file'));
+        for (let key in values) {
+            if (values.hasOwnProperty(key)) {
+                data.append(key, values[key]);
+            }
+        }
+        for (const [key, value] of data.entries()) {
+             console.log(key, value);
+         } 
+       
+        setMyState({...myState,isLoading:true});
+        axiosInstance.put(`/documents/${values.id_student}`, data, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }).then((response) => {
+            toast.success('Document updated successfully');
+            setMyState({...myState,isLoading:false});
+        }).catch((e) => {
+            toast.error('Update Error');
+            setMyState({...myState,isLoading:false});
+        });
+    
+    
+    };
     const {
         id: id_student,
         nom_etudiant: nom,
         matricule_etudiant: matricule,
         departement_etudiant: departement,
+        annee_soutenance:annee_soutenance,
+        type_doc:type_doc,
         titre_doc: titre_memoire,
         mot_cle_doc: mot_cle,
         membre_jury_soutenance: membre_jury,
@@ -64,7 +74,8 @@ const EditSection = ({ data }) => {
         "titre_memoire": titre_memoire,
         "mot_cle": mot_cle,
         "membre_jury": membre_jury,
-        "directeur_memoire": directeur_memoire,
+        "type_doc":type_doc,
+        "titre_doc": titre_memoire,
         "description": description
     }
     const initValuesWithoutFile = {
@@ -76,12 +87,13 @@ const EditSection = ({ data }) => {
         "titre_memoire": titre_memoire,
         "mot_cle": mot_cle,
         "membre_jury": membre_jury,
-        "directeur_memoire": directeur_memoire,
+        "type_doc":type_doc,
+        "titre_doc": titre_memoire,
         "description": description
     }
 
-    const initialValues = isFileDelete ? initValuesWithFile : initValuesWithoutFile;
-    const validationSchema = isFileDelete ? updateWithFileSchema : updateWithoutFileSchema;
+    const initialValues = myState.isFileDelete ? initValuesWithFile : initValuesWithoutFile;
+    const validationSchema = myState.isFileDelete ? updateWithFileSchema : updateWithoutFileSchema;
 
 
     const styles = {
@@ -98,9 +110,10 @@ const EditSection = ({ data }) => {
 
     const handleDeleteFile = (e) => {
         e.preventDefault();
-        setIsFIleDelete(true);
+        setMyState({...myState,isFileDelete:true});
 
     }
+
     const {
         values,
         errors,
@@ -116,7 +129,7 @@ const EditSection = ({ data }) => {
         onSubmit,
     });
 
-
+;
 
     return (
 
@@ -161,17 +174,56 @@ const EditSection = ({ data }) => {
                         </label>
 
                         <label className={styles.block}>
-                            <span htmlFor="departement" className={styles.label}>Departement</span>
-                            <input
-                                value={values.departement}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                id="departement"
-                                name="departement"
-                                type="text"
-                                className={`${styles.field} ${errors.departement && touched.departement ? styles.errorField : ""}`}
-                                placeholder="ex: Psychologie" />
+                            <span className={styles.label}>Annee</span>
+                            <select
+                            defaultValue={annee_soutenance}
+                                onChange={(event) => {
+                                    setFieldValue("annee_soutenance", event.currentTarget.value);
+                                }}
+                                className={`${styles.field} ${errors.annee_soutenance && touched.annee_soutenance ? styles.errorField : ""}`}>
+
+                                {items_annee.filter(item => item.id != 1).map(item => (
+                                    <option key={item.id} value={item.name}>{item.name}</option>
+                                ))}
+
+                            </select>
+                            {errors.annee_soutenance && touched.annee_soutenance && <p className={styles.errorMsg} >{errors.annee_soutenance}</p>}
+                        </label>
+
+                        <label className={styles.block}>
+                            <span className={styles.label}>Departement</span>
+                            <select 
+                             defaultValue={departement}
+                             onChange={(event) => {
+                                setFieldValue("departement", event.currentTarget.value);
+                            }}
+                            className={`${styles.field} ${errors.departement && touched.departement ? styles.errorField : ""}`}>
+
+                                {items_departement.filter(item => item.id != 1).map(item => (
+                                    <option key={item.id} value={item.name}>{item.name}</option>
+                                ))}
+
+                            </select>
+
                             {errors.departement && touched.departement && <p className={styles.errorMsg} >{errors.departement}</p>}
+                        </label>
+
+                        <label className={styles.block}>
+                            <span className={styles.label}>Type document</span>
+                            <select 
+                            defaultValue={type_doc}
+                             onChange={(event) => {
+                                setFieldValue("type_doc", event.currentTarget.value);
+                            }}
+                            className={`${styles.field} ${errors.type_doc && touched.type_doc ? styles.errorField : ""}`}>
+
+                                {items_type_doc.filter(item => item.id != 1).map(item => (
+                                    <option key={item.id} value={item.name}>{item.name}</option>
+                                ))}
+
+                            </select>
+
+                            {errors.type_doc && touched.type_doc && <p className={styles.errorMsg} >{errors.type_doc}</p>}
                         </label>
 
                         <label className={styles.block}>
@@ -216,19 +268,7 @@ const EditSection = ({ data }) => {
                             {errors.membre_jury && touched.membre_jury && <p className={styles.errorMsg} >{errors.membre_jury}</p>}
                         </label>
 
-                        <label className={styles.block}>
-                            <span htmlFor="directeur_memoire" className={styles.label}>Directeur de memoire</span>
-                            <input
-                                value={values.directeur_memoire}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                id="directeur_memoire"
-                                name="directeur_memoire"
-                                type="text"
-                                className={`${styles.field} ${errors.directeur_memoire && touched.directeur_memoire ? styles.errorField : ""}`}
-                                placeholder="ex: Pr. Zeto" />
-                            {errors.directeur_memoire && touched.directeur_memoire && <p className={styles.errorMsg} >{errors.directeur_memoire}</p>}
-                        </label>
+                      
 
                         <label className={styles.block}>
                             <span htmlFor="description" className={styles.label}>Description</span>
@@ -244,7 +284,7 @@ const EditSection = ({ data }) => {
                             />
                             {errors.description && touched.description && <p className={styles.errorMsg} >{errors.description}</p>}
                         </label>
-                        {isFileDelete ?
+                        {myState.isFileDelete ?
                             <label className={styles.block}>
                                 <span htmlFor="file" className={styles.label} >Document</span>
                                 <input
@@ -262,7 +302,7 @@ const EditSection = ({ data }) => {
                                 <span className={styles.label} >Document</span>
                                 <div className='flex items-center justify-between'>
                                     <input
-                                        disabled={!isFileDelete}
+                                        disabled={!myState.isFileDelete}
                                         htmlFor="source_doc"
                                         value={values.source_doc.split("/")[1]}
                                         className={`${styles.file} cursor-not-allowed ${errors.source_doc && touched.source_doc ? styles.errorField : ""}`}
@@ -292,8 +332,9 @@ const EditSection = ({ data }) => {
                                             Annuler
                                         </button>
                                     </Link>
-                                    <button type="submit" disabled={isSubmitting} className={`${isSubmitting && "cursor-not-allowed"} inline-flex items-center justify-center w-full px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple`}>
-                                        {isSubmitting && <svg className="w-5 h-5 mr-3 -ml-1  animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    {console.log(myState)}
+                                    <button type="submit" disabled={isSubmitting  || myState.isLoading} className={`${(isSubmitting || myState.isLoading) && "cursor-not-allowed"} inline-flex items-center justify-center w-full px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple`}>
+                                        {(isSubmitting || myState.isLoading) && <svg className="w-5 h-5 mr-3 -ml-1  animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none"
                                             viewBox="0 0 24 24">
                                             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                                             <path className="opacity-75" fill="currentColor"

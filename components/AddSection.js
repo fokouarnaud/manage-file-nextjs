@@ -23,7 +23,7 @@ const AddSection = () => {
                 data.append(key, values[key]);
             }
         }
-        console.log(values);
+     
 
         setIsLoading(true);
 
