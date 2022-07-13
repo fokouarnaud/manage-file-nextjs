@@ -11,7 +11,7 @@ const Hero = () => {
                         sauvegarde et recherche de documents
                     </h1>
                     <h2 className="font-light max-w-2xl mx-auto w-full text-xl dark:text-white text-gray-500 text-center py-8">
-                        sauvegarder vos documents important telles que des documents officiels et autres factures, leur principal argument étant la sécurité et les services associés.
+                        sauvegarder vos documents important telles que des memoires et theses, en toute sécurité.
                     </h2>
                     <div className="flex items-center justify-center mt-4">
                         <Link href={`/`}> 

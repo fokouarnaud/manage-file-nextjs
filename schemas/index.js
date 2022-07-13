@@ -17,6 +17,11 @@ export const registerSchema = Yup.object().shape({
     membre_jury: Yup.string().required('Required').min(1, 'Too Short!'),
     description: Yup.string().required('Required').min(1, 'Too Short!')
 })
+export const ficheDepotSchema = Yup.object().shape({
+  
+    matricule: Yup.string().required('Required').min(1, 'Too Short!'),
+   
+})
 export const updateWithFileSchema = Yup.object().shape({
     file: Yup.mixed().required('Required'),
     nom: Yup.string().required('Required').min(1, 'Too Short!'),

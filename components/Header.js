@@ -50,7 +50,7 @@ Logo
              <Link href={`/home`}><li><a href="#" className="md:p-4 py-2 block hover:text-purple-400">Accueil</a></li></Link>
             <Link href={`/`}><li><a href="#" className="md:p-4 py-2 block hover:text-purple-400">Documents</a></li></Link>
             <Link href={`/add`}><li><a href="#" className="md:p-4 py-2 block hover:text-purple-400">Deposer</a></li></Link>
-            <Link href={`/show/1`}><li><a href="#" className="md:p-4 py-2 block hover:text-purple-400">fiche depot</a></li></Link>
+            <Link href={`/ficheDepot`}><li><a href="#" className="md:p-4 py-2 block hover:text-purple-400">fiche depot</a></li></Link>
             
           </ul>
         </div>
