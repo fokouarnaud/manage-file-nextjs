@@ -1,9 +1,12 @@
 {
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev_local": "next dev",
+    "build_local": "next build",
+    "start_local": "next start",
+    "dev": "node server.js",
     "build": "next build",
-    "start": "next start"
+    "start": "NODE_ENV=production node server.js"
   },
   "dependencies": {
     "@headlessui/react": "^1.6.5",
