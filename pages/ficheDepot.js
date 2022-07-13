@@ -39,7 +39,7 @@ const ficheDepot = () => {
         axiosInstance.get(`/documents?page=1&limit=1&matricule=${matricule}`).then((response) => {
            
             const { data: res } = response;
-            if (res.data.length > 0) {
+            if (res.data.length > 0 || res.data.length >1 ) {
                 toast.success('veuillez patienter svp..');
                 actions.resetForm();
                 setMyState({
