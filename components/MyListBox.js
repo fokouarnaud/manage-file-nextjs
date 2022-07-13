@@ -72,7 +72,7 @@ const MyListBox = ({departement, type_doc, annee}) => {
   return (
     <TableSection
                   dataDocs={docs.data}
-                  page={docs.meta.page}
+                  page={pageConfig.currentPage}
                   limit={pageConfig.limit}
                   baseUrlDocSrc={docs.meta.baser_url}
                   handlePageClick={onPageChange}

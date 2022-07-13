@@ -12,7 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const AddSection = () => {
 
-    const [isLoading,setIsLoading]=useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const onSubmit = async (values, actions) => {
 
@@ -23,6 +23,7 @@ const AddSection = () => {
                 data.append(key, values[key]);
             }
         }
+        console.log(values);
 
         setIsLoading(true);
 
@@ -68,9 +69,9 @@ const AddSection = () => {
             "file": null,
             "nom": "",
             "matricule": "",
-            "departement": items_departement[0].name,
-            "type_doc": items_type_doc[0].name,
-            "annee_soutenance": items_annee[0].name,
+            "departement": items_departement.filter(item => item.id != 1)[0].name,
+            "type_doc": items_type_doc.filter(item => item.id != 1)[0].name,
+            "annee_soutenance": items_annee.filter(item => item.id != 1)[0].name,
             "titre_memoire": "",
             "mot_cle": "",
             "membre_jury": "",
@@ -125,7 +126,11 @@ const AddSection = () => {
                         </label>
                         <label className={styles.block}>
                             <span className={styles.label}>Annee</span>
-                            <select className={`${styles.field} ${errors.annee_soutenance && touched.annee_soutenance ? styles.errorField : ""}`}>
+                            <select
+                                onChange={(event) => {
+                                    setFieldValue("annee_soutenance", event.currentTarget.value);
+                                }}
+                                className={`${styles.field} ${errors.annee_soutenance && touched.annee_soutenance ? styles.errorField : ""}`}>
 
                                 {items_annee.filter(item => item.id != 1).map(item => (
                                     <option key={item.id} value={item.name}>{item.name}</option>
@@ -137,7 +142,11 @@ const AddSection = () => {
 
                         <label className={styles.block}>
                             <span className={styles.label}>Departement</span>
-                            <select className={`${styles.field} ${errors.departement && touched.departement ? styles.errorField : ""}`}>
+                            <select 
+                             onChange={(event) => {
+                                setFieldValue("departement", event.currentTarget.value);
+                            }}
+                            className={`${styles.field} ${errors.departement && touched.departement ? styles.errorField : ""}`}>
 
                                 {items_departement.filter(item => item.id != 1).map(item => (
                                     <option key={item.id} value={item.name}>{item.name}</option>
@@ -150,7 +159,11 @@ const AddSection = () => {
 
                         <label className={styles.block}>
                             <span className={styles.label}>Type document</span>
-                            <select className={`${styles.field} ${errors.type_doc && touched.type_doc ? styles.errorField : ""}`}>
+                            <select 
+                             onChange={(event) => {
+                                setFieldValue("type_doc", event.currentTarget.value);
+                            }}
+                            className={`${styles.field} ${errors.type_doc && touched.type_doc ? styles.errorField : ""}`}>
 
                                 {items_type_doc.filter(item => item.id != 1).map(item => (
                                     <option key={item.id} value={item.name}>{item.name}</option>
@@ -241,8 +254,8 @@ const AddSection = () => {
                                             Annuler
                                         </button>
                                     </Link>
-                                    <button type="submit" disabled={isSubmitting || isLoading} className={`${(isSubmitting || isLoading ) && "cursor-not-allowed"} inline-flex items-center justify-center w-full px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple`}>
-                                        {(isSubmitting || isLoading )&& <svg className="w-5 h-5 mr-3 -ml-1  animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    <button type="submit" disabled={isSubmitting || isLoading} className={`${(isSubmitting || isLoading) && "cursor-not-allowed"} inline-flex items-center justify-center w-full px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple`}>
+                                        {(isSubmitting || isLoading) && <svg className="w-5 h-5 mr-3 -ml-1  animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none"
                                             viewBox="0 0 24 24">
                                             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                                             <path className="opacity-75" fill="currentColor"

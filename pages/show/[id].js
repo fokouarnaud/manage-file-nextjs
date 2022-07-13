@@ -169,13 +169,14 @@ function bodyRowsDescription(){
   
     doc.setPage(pageNumber)
   
-
+    let defaultFontSizeText=9.5;
+    let defaultFontSizeHeader=8;
     doc.autoTable({ startY: doc.lastAutoTable.finalY + 20,head: [
       {nom: 'Nom & Prenom',matricule:'Matricule', document:'Document',departement:'Departement',annee:'Annee'}
   
     ],
-    styles: {font:"Inter-Regular", fontSize: 12,cellPadding: 0.8},
-    headerStyles: { fontSize: 8 },
+    styles: {font:"Inter-Regular", fontSize: defaultFontSizeText,cellPadding: 0.8},
+    headerStyles: { fontSize: defaultFontSizeHeader },
     
     theme:'plain', body: bodyRowsFirst(), pageBreak: 'avoid' }) 
 
@@ -184,8 +185,8 @@ function bodyRowsDescription(){
       {titre_doc: 'Titre document'}
   
     ], tableHeight: 'wrap',
-    styles: {font:"Inter-Regular",fontSize: 12,cellPadding: 0.8 },
-    headerStyles: { fontSize: 8 },
+    styles: {font:"Inter-Regular",fontSize: defaultFontSizeText,cellPadding: 0.8 },
+    headerStyles: { fontSize: defaultFontSizeHeader },
     
     theme:'plain',body: bodyRowsTitre(), pageBreak: 'avoid' })
     //
@@ -193,8 +194,8 @@ function bodyRowsDescription(){
       {mot_cle: 'Mots cles'}
   
     ], tableHeight: 'wrap',
-    styles: {font:"Inter-Regular",fontSize: 12,cellPadding: 0.8 },
-    headerStyles: { fontSize: 8 },
+    styles: {font:"Inter-Regular",fontSize: defaultFontSizeText,cellPadding: 0.8 },
+    headerStyles: { fontSize: defaultFontSizeHeader },
     
     theme:'plain',body: bodyRowsMotCle(), pageBreak: 'avoid' }) 
     
@@ -203,8 +204,8 @@ function bodyRowsDescription(){
       {membre_jury: 'Membres du jury'}
   
     ], tableHeight: 'wrap',
-    styles: {font:"Inter-Regular",fontSize: 12,cellPadding: 0.8 },
-    headerStyles: { fontSize: 8 },
+    styles: {font:"Inter-Regular",fontSize: defaultFontSizeText,cellPadding: 0.8 },
+    headerStyles: { fontSize: defaultFontSizeHeader },
     
     theme:'plain',body: bodyRowsMembreJury(), pageBreak: 'avoid' })
   
@@ -213,8 +214,8 @@ function bodyRowsDescription(){
       {description: 'Resume'}
   
     ], tableHeight: 'wrap',
-    styles: {font:"Inter-Regular",fontSize: 12,cellPadding: 0.8 },
-    headerStyles: { fontSize: 8 },
+    styles: {font:"Inter-Regular",fontSize: defaultFontSizeText,cellPadding: 0.8 },
+    headerStyles: { fontSize: defaultFontSizeHeader },
     
     theme:'plain',body: bodyRowsDescription(), pageBreak: 'avoid' })
   
@@ -266,13 +267,7 @@ function bodyRowsDescription(){
         </div>
 
       </div>
-      <div className="flex items-center lg:w-3/5 mx-auto border-b pb-10 mb-10 border-gray-200 sm:flex-row flex-col">
-        <div className="flex-grow sm:text-left text-center mt-6 sm:mt-0">
-          <h2 className="text-gray-900 text-lg title-font font-medium mb-2">Directeur de memoire</h2>
-          <p className="leading-relaxed text-base">{doc.directeur_soutenance}</p>
-        </div>
-
-      </div>
+  
       <div className="flex items-center lg:w-3/5 mx-auto border-b pb-10 mb-10 border-gray-200 sm:flex-row flex-col">
         <div className="flex-grow sm:text-left text-center mt-6 sm:mt-0">
           <h2 className="text-gray-900 text-lg title-font font-medium mb-2">Description</h2>
