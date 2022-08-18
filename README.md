@@ -2,7 +2,7 @@
 
 Organizations generally want to show their student's work to a large number of people or other organizations. With manage-file they can upload specific documents online, to allow a large number of people to view them.
 
-All code follows [ESLint](https://eslint.org/docs/latest/rules/). 
+All code follows [ESLint style guide](https://eslint.org/docs/latest/rules/). 
 
 
 ## Getting Started
