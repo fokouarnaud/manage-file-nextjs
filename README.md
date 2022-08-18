@@ -1,7 +1,6 @@
 # Manage file
 
-Organizations generally want to show their student's work to a large number of people or other organizations. With manage-file they can upload specific documents online, to allow a large number of people to view them.
-
+Organizations generally want to show their student's work to a large number of people or other organizations. With manage-file they can save important documents such as dissertations and theses, safely.
 All code follows [ESLint style guide](https://eslint.org/docs/latest/rules/). 
 
 
