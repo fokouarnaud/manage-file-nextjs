@@ -1,7 +1,9 @@
 # Manage file
 
 Organizations generally want to show their student's work to a large number of people or other organizations. With manage-file they can save important documents such as dissertations and theses, safely.
+
 All code follows [ESLint style guide](https://eslint.org/docs/latest/rules/). 
+Check a demo [here](https://manage-file.netlify.app/home)
 
 
 ## Getting Started
