@@ -1,14 +1,14 @@
-# API Trivia
+# Manage file
 
-Udacity s'investit dans la création de liens pour ses employés et ses étudiants. Des membres de l'équipe ont eu l'idée de maintenir Trivia et ont créé une page Web pour gérer l'application Trivia et jouer le jeu, mais leur expérience API est limitée et doit encore être construite. Ce projet donne leur donne la possibilité de planifier, d'implémenter et de tester une API.
+Organizations generally want to show their student's work to a large number of people or other organizations. With manage-file they can upload specific documents online, to allow a large number of people to view them.
 
-All backend code follows [PEP8 style guidelines](https://www.python.org/dev/peps/pep-0008/). 
+All code follows [ESLint](https://eslint.org/docs/latest/rules/). 
 
 
 ## Getting Started
 
 ### Pre-requisites and Local Development 
-Developers using this project should already have Python3, pip and node installed on their local machines.
+Developers using this project should already have nodejs installed on their local machines.
 
 #### Backend
 
