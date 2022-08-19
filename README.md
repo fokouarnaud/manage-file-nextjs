@@ -4,7 +4,6 @@ Organizations generally want to show their student's work to a large number of p
 
 All code follows [ESLint style guide](https://eslint.org/docs/latest/rules/). 
 
-Check a demo [here](https://manage-file.netlify.app/home)
 
 
 ## Getting Started
