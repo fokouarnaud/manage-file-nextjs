@@ -21,18 +21,9 @@ The backend was profide by an api. [View the README.md from source repository fo
 Run the following commands to start the client: 
 ```
 npm install // only once to install dependencies
-export NODE_OPTIONS=--openssl-legacy-provider
-npm start 
+npm run start 
 ```
 
-By default, the frontend will run on localhost:3000. 
+By default, the app will run on localhost:3000. 
 
-### Tests
-In order to run tests navigate to the backend folder and run the following commands: 
 
-```
-dropdb trivia_test
-createdb trivia_test
-psql trivia_test < trivia.psql
-python test_flaskr.py
-```
