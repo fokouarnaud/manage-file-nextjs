@@ -11,9 +11,7 @@ export const Page404 = () => {
                 <h1 className="text-6xl font-semibold text-gray-700 dark:text-gray-200">
                     404
                 </h1>
-                <p className="text-gray-700 dark:text-gray-300">
-                Page non trouvée. Vérifiez l'adresse ou
-                    {" "}
+                <p className="text-gray-700 dark:text-gray-300">Page non trouvée. Vérifiez l&rsquo;adresse ou{" "}
                     <a
                         className="text-purple-600 hover:underline dark:text-purple-300"
                        

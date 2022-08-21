@@ -9,7 +9,7 @@ import { useRouter } from 'next/router'
 
 import { useFormik } from "formik";
 
-const ficheDepot = () => {
+const FicheDepot = () => {
     const router = useRouter()
 
     const [myState, setMyState] = useState({
@@ -21,12 +21,8 @@ const ficheDepot = () => {
         if (myState.id.length > 0) {
             router.push('/admin/show/' + myState.id[0]);
         }
-    }, [myState])
+    }, [myState,router])
     const onSubmit = async (values, actions) => {
-
-
-
-
         const matricule = values["matricule"];
 
         setMyState({
@@ -160,4 +156,4 @@ const ficheDepot = () => {
     )
 }
 
-export default ficheDepot;
+export default FicheDepot;

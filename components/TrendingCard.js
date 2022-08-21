@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 
 const TrendingCard = () => {
   return (
@@ -7,7 +8,7 @@ const TrendingCard = () => {
       <div className="space-y-2">
         <div className="flex items-center justify-start sapce-x-2">
           <div className="h-8 w-8 ">
-            <img className="h-full w-full object-cover object-center" src="/images/trend/1.webp" alt="image_trend1" />
+            <Image className="h-full w-full object-cover object-center" src="/images/trend/1.webp" alt="image_trend1" />
           </div>
           <h3 className="text-xs text-gray-500 font-semibold">
             <a href="#" className="text-black">Nelly</a>{" "}

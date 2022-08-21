@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 
 const BlogCard = () => {
     return (
@@ -7,7 +8,7 @@ const BlogCard = () => {
                 <div className="flex flex-col items-start justify-start space-y-1">
                     <div className=" flex items-center justify-start space-x-2">
                         <span className="h-8 w-8">
-                            <img className="h-full w-full object-cover object-center"
+                            <Image className="h-full w-full object-cover object-center"
                                 src="/images/trend/2.webp" alt="img_profile" />
                         </span>
                         <h3 className="text-xs text-gray-500 font-semibold">
@@ -33,7 +34,7 @@ const BlogCard = () => {
                     </div>
                 </div>
                 <div className="w-1/3">
-                    <img className="object-cover object-center w-full h-full" src="/images/trend/3.webp" alt="smal_img" />
+                    <Image className="object-cover object-center w-full h-full" src="/images/trend/3.webp" alt="smal_img" />
                 </div>
 
             </div>

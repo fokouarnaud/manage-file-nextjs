@@ -7,9 +7,6 @@ import { toast} from 'react-toastify';
 const FileUploader = ({onSuccess,onInputChange,}) => {
     const [files, setFiles] = useState([]);
 
-    const onInputChange = (e) => {
-        setFiles(e.target.files)
-    };
 
     const onSubmit = (e) => {
         e.preventDefault();

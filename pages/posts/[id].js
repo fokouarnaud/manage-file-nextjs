@@ -1,4 +1,5 @@
 import { getAllPostIds, getPostData } from '../../lib/posts';
+import Image from 'next/image';
 import Head from 'next/head';
 import Date from '../../components/date';
 import utilStyles from '../../styles/utils.module.css';
@@ -10,7 +11,7 @@ export default function Post({ postData }) {
         <div className=" shrink border-r border-gray-400 w-32 min-h-screen">
           <nav className="h-full">
             <div className="h-screen flex flex-col items-center justify-between sticky top-4">
-              <div className="h-16 w-16 py-16 px-0"> <img className="object-cover object-center" src="/images/logo.png" alt="logo" /></div>
+              <div className="h-16 w-16 py-16 px-0"> <Image className="object-cover object-center" src="/images/logo.png" alt="logo" /></div>
               <div className="space-y-5">
                 <div className="font-extrabold">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
@@ -64,7 +65,7 @@ export default function Post({ postData }) {
                               <div className="mr-6">
                                 <a href="#" className="p-0 m-0">
                                   <div className="relative">
-                                    <img className="h-16 w-16 rounded-full bg-gray-400" src="/images/profil.png" alt="img_profil"/>
+                                    <Image className="h-16 w-16 rounded-full bg-gray-400" src="/images/profil.png" alt="img_profil"/>
                                     <div className="h-16 w-16 absolute top-0 rounded-full shadow-gray-400"></div>
                                   </div>
                                 </a>
@@ -183,7 +184,7 @@ export default function Post({ postData }) {
                                   <div className="z-auto cursor-zoom-in ease-out relative w-full">
 
                                     <div className="max-w-6xl mx-auto">
-                                    <img alt="first_image" className="h-auto max-w-full align-middle" src="https://miro.medium.com/max/700/0*ZQ9Xa7CINFVMA95w" />
+                                    <Image alt="first_image" className="h-auto max-w-full align-middle" src="https://miro.medium.com/max/700/0*ZQ9Xa7CINFVMA95w" />
                                     </div>
                                   </div>
                             </figure>
@@ -199,23 +200,23 @@ export default function Post({ postData }) {
                                   <div className="z-auto cursor-zoom-in ease-out relative w-full">
 
                                     <div className="max-w-6xl mx-auto">
-                                    <img alt="first_image" className="h-auto max-w-full align-middle" src="https://miro.medium.com/max/700/0*pL2z2iYzWPrMu5hw"/>
+                                    <Image alt="first_image" className="h-auto max-w-full align-middle" src="https://miro.medium.com/max/700/0*pL2z2iYzWPrMu5hw"/>
                                     </div>
                                   </div>
                             </figure>
                             <p className="mt-8 tracking-[-.003em] leading-8 text-xl text-gray-800 -mb-1 font-serif">
                            As the product has matured, more of you have started to build apps with it. Today there are over 500,000 apps built with Flutter. Analytics from 
-                           research firms like <a className="underline text-inherit" href="https://www.data.ai/en/"  target="_blank">data.ai</a>, along with public testimonials,
-                            show Flutter is used by a <a className="underline text-inherit" href="https://flutter.dev/showcase"  target="_blank">broad list of customers</a>
-                            {" "} in many segments: from social apps like <a className="underline text-inherit" href="https://play.google.com/store/apps/details?id=com.tencent.mm&amp;hl=en_US&amp;gl=US"  target="_blank">WeChat</a> 
-                             to finance and banking apps like <a className="underline text-inherit" href="https://apps.apple.com/us/app/betterment-investing-saving/id393156562"  target="_blank">Betterment</a> and {" "}
-                              <a className="underline text-inherit" href="https://play.google.com/store/apps/details?id=com.nu.production&amp;hl=en_US&amp;gl=US" target="_blank">Nubank</a>;
-                               from commerce apps like <a className="underline text-inherit" href="https://play.google.com/store/apps/details?id=com.zzkko&amp;hl=en_US&amp;gl=US" target="_blank">SHEIN</a> {" "}
-                               and <a className="underline text-inherit" href="https://apps.apple.com/us/app/trip-com-hotels-flights-trains/id681752345"  target="_blank">trip.com</a> 
-                               to lifestyle apps like <a className="underline text-inherit" href="https://fastic.com/"  target="_blank">Fastic</a> 
-                               and <a className="underline text-inherit" href="https://auspreneur.com.au/tabcorp-adopts-googles-flutter-platform/"  target="_blank">Tabcorp</a>;
-                                from companion apps like <a className="underline text-inherit" href="https://www.press.bmwgroup.com/global/article/detail/T0328610EN/the-my-bmw-app:-new-features-and-tech-insights-for-march-2021?language=en"  target="_blank">My BMW</a>{" "}
-                                 to public institutions such as the <a className="underline text-inherit" href="https://apps.apple.com/app/id1506827551"  target="_blank">Brazil government</a>.
+                           research firms like <a className="underline text-inherit" href="https://www.data.ai/en/" rel="noreferrer" target="_blank">data.ai</a>, along with public testimonials,
+                            show Flutter is used by a <a className="underline text-inherit" href="https://flutter.dev/showcase" rel="noreferrer" target="_blank">broad list of customers</a>
+                            {" "} in many segments: from social apps like <a className="underline text-inherit" href="https://play.google.com/store/apps/details?id=com.tencent.mm&amp;hl=en_US&amp;gl=US" rel="noreferrer" target="_blank">WeChat</a> 
+                             to finance and banking apps like <a className="underline text-inherit" rel="noreferrer" href="https://apps.apple.com/us/app/betterment-investing-saving/id393156562"  target="_blank">Betterment</a> and {" "}
+                              <a className="underline text-inherit" rel="noreferrer" href="https://play.google.com/store/apps/details?id=com.nu.production&amp;hl=en_US&amp;gl=US" target="_blank">Nubank</a>;
+                               from commerce apps like <a className="underline text-inherit" rel="noreferrer" href="https://play.google.com/store/apps/details?id=com.zzkko&amp;hl=en_US&amp;gl=US" target="_blank">SHEIN</a> {" "}
+                               and <a className="underline text-inherit" rel="noreferrer" href="https://apps.apple.com/us/app/trip-com-hotels-flights-trains/id681752345"  target="_blank">trip.com</a> 
+                               to lifestyle apps like <a className="underline text-inherit" href="https://fastic.com/" rel="noreferrer" target="_blank">Fastic</a> 
+                               and <a className="underline text-inherit" rel="noreferrer" href="https://auspreneur.com.au/tabcorp-adopts-googles-flutter-platform/"  target="_blank">Tabcorp</a>;
+                                from companion apps like <a className="underline text-inherit" href="https://www.press.bmwgroup.com/global/article/detail/T0328610EN/the-my-bmw-app:-new-features-and-tech-insights-for-march-2021?language=en" rel="noreferrer" target="_blank">My BMW</a>{" "}
+                                 to public institutions such as the <a className="underline text-inherit" rel="noreferrer" href="https://apps.apple.com/app/id1506827551"  target="_blank">Brazil government</a>.
                             </p>
                             <blockquote className="m-0 pl-12"><p className=" mt-10 -mb-1 text-3xl text-gray-500 font-light tracking-[-.009em]" >Today there are over 500,000 apps built with Flutter.</p></blockquote>
                             <figure className="mt-20 clear-both m-0">
@@ -244,7 +245,7 @@ export default function Post({ postData }) {
                               </li>
                             </ul>
                             <p className="mt-8 tracking-[-.003em] leading-8 text-xl text-gray-800 -mb-1 font-serif">
-                            In a <a className="underline text-inherit" href="https://tech-blog.sonos.com/posts/renovating-setup-with-flutter/"  target="_blank">recent blog post by Sonos</a>{" "}
+                            In a <a className="underline text-inherit" href="https://tech-blog.sonos.com/posts/renovating-setup-with-flutter/" rel="noreferrer"  target="_blank">recent blog post by Sonos</a>{" "}
                              discussing their <mark className="text-current cursor-pointer bg-gray-200">revamped </mark>setup experience, they emphasized the second of these:
                             a rich library of packages and many performance and tooling improvements.
                             </p>
@@ -299,7 +300,7 @@ export default function Post({ postData }) {
                   <div className="mt-16"></div>
                   <a href="#" className="m-0 p-0">
                     <div className="relative">
-                      <img src="/images/profil.png" className="w-32 h-32 rounded-full"/>
+                      <Image alt="my-profil" src="/images/profil.png" className="w-32 h-32 rounded-full"/>
                     </div>
                   </a>
                   <div className="mt-6"></div>

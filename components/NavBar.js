@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import useScroll from '../lib/useScroll';
+import Image from 'next/image';
 
 const NavBar = () => {
     const [fix, setFix] = useState(false);
@@ -21,7 +22,7 @@ const NavBar = () => {
 
             <div className="max-w-7xl mx-auto flex flex-row items-center justify-between py-3 xl:px-5">
                 <div>
-                    <img className=" h-12" src="/images/logo.png" alt="act-blog" />
+                    <Image className=" h-12" src="/images/logo.png" alt="act-blog" />
                 </div>
                 <div className="">
                     <ul className="flex flex-row items-center justify-between space-x-5">

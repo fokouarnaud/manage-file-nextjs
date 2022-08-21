@@ -39,7 +39,7 @@ const TableRows = ({
                 <div className="flex items-center space-x-4 text-sm">
 
 
-                    <a href={srcDoc} target="_blank"
+                    <a href={srcDoc} rel="noreferrer" target="_blank"
                         className="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg  focus:outline-none focus:shadow-outline-gray"
                         aria-label="Info"
                     >

@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 
 const Hero = () => {
     return (
@@ -8,7 +9,7 @@ const Hero = () => {
                     <h1 className="text-black  text-7xl font-serif tracking-tighter">   Where good ideas find you</h1>
                     <p className="text-lg">
                         Read and share new perspectives on just about any topic.
-                        Everyone's welcome.{" "} 
+                        Everyone&rsquo;s welcome.{" "} 
                         <a className="underline" href="#">Learn more</a>.
                     </p>
 
@@ -20,7 +21,7 @@ const Hero = () => {
                     </div>
                 </div>
                 <div>
-                    <img src="/images/hero.png" alt="train_image"/>
+                    <Image src="/images/hero.png" alt="train_image"/>
                 </div>
             </div>
         </div>
