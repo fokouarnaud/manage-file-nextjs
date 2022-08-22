@@ -1,4 +1,4 @@
-# Manage file
+# Manage file UI
 
 Organizations generally want to show their student's work to a large number of people or other organizations. With manage-file they can save important documents such as dissertations and theses, safely.
 
